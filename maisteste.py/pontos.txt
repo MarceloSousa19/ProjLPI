@@ -1,0 +1,8 @@
+[0] Cotovelo Direito
+[1] Cotovelo Esquerdo
+[2] Ombro Direito
+[3] Ombro Esquerdo
+[4] Anca Direita
+[5] Anca Esquerda
+[6] Joelho Direito
+[7] Joelho Esquerdo
