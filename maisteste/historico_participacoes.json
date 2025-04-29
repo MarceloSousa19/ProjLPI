@@ -1,0 +1,146 @@
+[
+    {
+        "nivel": "Principiante",
+        "data": "2025-04-29",
+        "resultado_nivel": "Passou",
+        "media_final": 83.8,
+        "poses": [
+            {
+                "nome": "Adho_Mukha_Svanasana",
+                "precisao": 82
+            },
+            {
+                "nome": "Virabhadrasana_One",
+                "precisao": 85
+            },
+            {
+                "nome": "Trikonasana",
+                "precisao": 90
+            },
+            {
+                "nome": "Padmasana",
+                "precisao": 88
+            },
+            {
+                "nome": "Bakasana",
+                "precisao": 79
+            },
+            {
+                "nome": "Utkatasana",
+                "precisao": 83
+            },
+            {
+                "nome": "Vrksasana",
+                "precisao": 86
+            },
+            {
+                "nome": "Malasana",
+                "precisao": 81
+            },
+            {
+                "nome": "Dhanurasana",
+                "precisao": 84
+            },
+            {
+                "nome": "Ustrasana",
+                "precisao": 80
+            }
+        ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-04-29",
+        "resultado_nivel": "Passou",
+        "media_final": 83.8,
+        "poses": [
+            {
+                "nome": "Adho_Mukha_Svanasana",
+                "precisao": 82
+            },
+            {
+                "nome": "Virabhadrasana_One",
+                "precisao": 85
+            },
+            {
+                "nome": "Trikonasana",
+                "precisao": 90
+            },
+            {
+                "nome": "Padmasana",
+                "precisao": 88
+            },
+            {
+                "nome": "Bakasana",
+                "precisao": 79
+            },
+            {
+                "nome": "Utkatasana",
+                "precisao": 83
+            },
+            {
+                "nome": "Vrksasana",
+                "precisao": 86
+            },
+            {
+                "nome": "Malasana",
+                "precisao": 81
+            },
+            {
+                "nome": "Dhanurasana",
+                "precisao": 84
+            },
+            {
+                "nome": "Ustrasana",
+                "precisao": 80
+            }
+        ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-04-29",
+        "resultado_nivel": "Passou",
+        "media_final": 85.6,
+        "poses": [
+            {
+                "nome": "Adho_Mukha_Svanasana",
+                "precisao": 88
+            },
+            {
+                "nome": "Virabhadrasana_One",
+                "precisao": 82
+            },
+            {
+                "nome": "Utkatasana",
+                "precisao": 91
+            },
+            {
+                "nome": "Trikonasana",
+                "precisao": 85
+            },
+            {
+                "nome": "Padmasana",
+                "precisao": 90
+            },
+            {
+                "nome": "Bakasana",
+                "precisao": 80
+            },
+            {
+                "nome": "Navasana",
+                "precisao": 87
+            },
+            {
+                "nome": "Dhanurasana",
+                "precisao": 84
+            },
+            {
+                "nome": "Balasana",
+                "precisao": 86
+            },
+            {
+                "nome": "Bitilasana",
+                "precisao": 83
+            }
+        ]
+    }
+]

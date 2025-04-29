@@ -1,4 +1,4 @@
-# src/extrair_pontos_corrigido.py
+
 
 import os
 import csv

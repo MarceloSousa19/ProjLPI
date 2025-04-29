@@ -1,0 +1,24 @@
+{
+    "Adho_Mukha_Svanasana": {
+        "nome": "Adho_Mukha_Svanasana",
+        "tentativas": [
+            {
+                "data": "2025-04-29",
+                "precisao": 85.0
+            },
+            {
+                "data": "2025-04-29",
+                "precisao": 62.5
+            }
+        ]
+    },
+    "Virabhadrasana_One": {
+        "nome": "Virabhadrasana_One",
+        "tentativas": [
+            {
+                "data": "2025-04-29",
+                "precisao": 78.5
+            }
+        ]
+    }
+}
