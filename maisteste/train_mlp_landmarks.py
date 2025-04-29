@@ -1,4 +1,4 @@
-# src/train_mlp_landmarks.py
+
 
 import pandas as pd
 import numpy as np
@@ -32,10 +32,10 @@ y_test_encoded = label_encoder.transform(y_test)
 
 # MLP
 mlp = MLPClassifier(
-    hidden_layer_sizes=(128, 64),
+    hidden_layer_sizes=(256, 128, 64),
     activation='relu',
     solver='adam',
-    max_iter=500,
+    max_iter=1000,
     random_state=42
 )
 
