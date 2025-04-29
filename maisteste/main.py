@@ -11,7 +11,7 @@ mp_pose = mp.solutions.pose
 # Tolerância para comparação dos ângulos
 tolerancia_angular = 15
 
-# Carregar poses armazenadas (JSON)
+# Carregar poses armazqadas (JSON)
 if os.path.exists('poses.json'):
     with open('poses.json', 'r') as f:
         POSES_ARMAZENADAS = json.load(f)
@@ -56,16 +56,38 @@ def identificar_pose(angle_user, poses_ref, tolerancia=tolerancia_angular):
 
     return melhor_match, tipo_match
 
-def guardar_pose(nome_pose, angulos, ficheiro='poses.json'):
+def guardar_pose(nome_pose, angulos, landmarks, ficheiro='poses.json'):
     if os.path.exists(ficheiro):
         with open(ficheiro, 'r') as f:
             poses = json.load(f)
     else:
         poses = {}
-    poses[nome_pose] = angulos
+    poses[nome_pose] = {
+        "angles": angulos,
+        "landmarks": landmarks
+    }
     with open(ficheiro, 'w') as f:
         json.dump(poses, f, indent=4)
     print(f"Pose '{nome_pose}' guardada com sucesso.")
+
+def calcular_precisao_landmarks(landmarks_user, landmarks_ref, tolerancia=0.05):
+    erros = [
+        np.linalg.norm(np.array(user) - np.array(ref))
+        for user, ref in zip(landmarks_user, landmarks_ref)
+    ]
+    precisao = sum(1 for erro in erros if erro < tolerancia) / len(erros) * 100
+    return precisao
+
+def calcular_precisao_angulos(angles_user, angles_ref, tolerancia=tolerancia_angular):
+    erros = [abs(a - b) for a, b in zip(angles_user, angles_ref)]
+    precisao = sum(1 for erro in erros if erro < tolerancia) / len(erros) * 100
+    return precisao
+
+def calcular_precisao_combinada(landmarks_user, landmarks_ref, angles_user, angles_ref, peso_landmarks=0.5):
+    precisao_landmarks = calcular_precisao_landmarks(landmarks_user, landmarks_ref)
+    precisao_angulos = calcular_precisao_angulos(angles_user, angles_ref)
+    precisao_combinada = (peso_landmarks * precisao_landmarks) + ((1 - peso_landmarks) * precisao_angulos)
+    return precisao_combinada
 
 cap = cv2.VideoCapture(0)
 print("Iniciando deteção de pose... Pressiona 'q' para sair ou 'g' para guardar pose.")
@@ -84,24 +106,24 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
         if results.pose_landmarks:
-            landmarks = results.pose_landmarks.landmark
+            landmarks = [[lm.x, lm.y, lm.z] for lm in results.pose_landmarks.landmark]
 
             # Extrair pontos-chave
-            r_shoulder = [landmarks[12].x, landmarks[12].y]
-            r_elbow = [landmarks[14].x, landmarks[14].y]
-            r_wrist = [landmarks[16].x, landmarks[16].y]
+            r_shoulder = [landmarks[12][0], landmarks[12][1]]
+            r_elbow = [landmarks[14][0], landmarks[14][1]]
+            r_wrist = [landmarks[16][0], landmarks[16][1]]
 
-            l_shoulder = [landmarks[11].x, landmarks[11].y]
-            l_elbow = [landmarks[13].x, landmarks[13].y]
-            l_wrist = [landmarks[15].x, landmarks[15].y]
+            l_shoulder = [landmarks[11][0], landmarks[11][1]]
+            l_elbow = [landmarks[13][0], landmarks[13][1]]
+            l_wrist = [landmarks[15][0], landmarks[15][1]]
 
-            r_hip = [landmarks[24].x, landmarks[24].y]
-            r_knee = [landmarks[26].x, landmarks[26].y]
-            r_ankle = [landmarks[28].x, landmarks[28].y]
+            r_hip = [landmarks[24][0], landmarks[24][1]]
+            r_knee = [landmarks[26][0], landmarks[26][1]]
+            r_ankle = [landmarks[28][0], landmarks[28][1]]
 
-            l_hip = [landmarks[23].x, landmarks[23].y]
-            l_knee = [landmarks[25].x, landmarks[25].y]
-            l_ankle = [landmarks[27].x, landmarks[27].y]
+            l_hip = [landmarks[23][0], landmarks[23][1]]
+            l_knee = [landmarks[25][0], landmarks[25][1]]
+            l_ankle = [landmarks[27][0], landmarks[27][1]]
 
             # Calcular ângulos
             angle = [
@@ -115,6 +137,21 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 calculate_angle(l_hip, l_knee, l_ankle)
             ]
 
+            # Calcular precisão
+            if POSES_ARMAZENADAS:
+                for nome, dados_ref in POSES_ARMAZENADAS.items():
+                    landmarks_ref = dados_ref["landmarks"]
+                    angles_ref = dados_ref["angles"]
+
+                    precisao_landmarks = calcular_precisao_landmarks(landmarks, landmarks_ref)
+                    precisao_angulos = calcular_precisao_angulos(angle, angles_ref)
+                    precisao_combinada = calcular_precisao_combinada(landmarks, landmarks_ref, angle, angles_ref)
+
+                    print(f"Pose: {nome}")
+                    print(f"  Precisão (landmarks): {precisao_landmarks:.2f}%")
+                    print(f"  Precisão (ângulos): {precisao_angulos:.2f}%")
+                    print(f"  Precisão combinada: {precisao_combinada:.2f}%")
+
             if time.time() - ultimo_print >= 10:
                 print("Ângulos atuais:", [int(a) for a in angle])
                 ultimo_print = time.time()
@@ -127,7 +164,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             # Guardar pose se pressionar 'g'
             if cv2.waitKey(10) & 0xFF == ord('g'):
                 nome = input("Nome da nova pose: ")
-                guardar_pose(nome, angle)
+                guardar_pose(nome, angle, landmarks)
 
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
