@@ -1,0 +1,14 @@
+[
+    { "nome_utilizador": "João", "nome_pose": "Padmasana", "precisao": 92.4 },
+    { "nome_utilizador": "João", "nome_pose": "Balasana", "precisao": 88.0 },
+    { "nome_utilizador": "João", "nome_pose": "Trikonasana", "precisao": 91.2 },
+  
+    { "nome_utilizador": "Maria", "nome_pose": "Padmasana", "precisao": 95.0 },
+    { "nome_utilizador": "Maria", "nome_pose": "Balasana", "precisao": 90.0 },
+    { "nome_utilizador": "Maria", "nome_pose": "Trikonasana", "precisao": 89.0 },
+  
+    { "nome_utilizador": "André", "nome_pose": "Padmasana", "precisao": 90.5 },
+    { "nome_utilizador": "André", "nome_pose": "Balasana", "precisao": 91.0 },
+    { "nome_utilizador": "André", "nome_pose": "Trikonasana", "precisao": 93.0 }
+  ]
+  

@@ -1,0 +1,14 @@
+[
+    { "nome_grupo": "TeamAlpha", "nome_pose": "Padmasana", "precisao": 91.0 },
+    { "nome_grupo": "TeamAlpha", "nome_pose": "Balasana", "precisao": 89.5 },
+    { "nome_grupo": "TeamAlpha", "nome_pose": "Trikonasana", "precisao": 93.2 },
+  
+    { "nome_grupo": "YogaMasters", "nome_pose": "Padmasana", "precisao": 95.5 },
+    { "nome_grupo": "YogaMasters", "nome_pose": "Balasana", "precisao": 94.0 },
+    { "nome_grupo": "YogaMasters", "nome_pose": "Trikonasana", "precisao": 92.1 },
+  
+    { "nome_grupo": "ZenSquad", "nome_pose": "Padmasana", "precisao": 78.0 },
+    { "nome_grupo": "ZenSquad", "nome_pose": "Balasana", "precisao": 81.0 },
+    { "nome_grupo": "ZenSquad", "nome_pose": "Trikonasana", "precisao": 88.0 }
+  ]
+  

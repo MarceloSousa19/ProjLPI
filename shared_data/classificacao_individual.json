@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "André",
+        "pontuacao": 3,
+        "medalha": false
+    },
+    {
+        "nome": "João",
+        "pontuacao": 2,
+        "medalha": false
+    },
+    {
+        "nome": "Maria",
+        "pontuacao": 2,
+        "medalha": false
+    }
+]

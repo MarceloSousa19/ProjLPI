@@ -6,4 +6,4 @@ from src.recorde_pessoal import atualizar_recorde_pessoal
 # Exemplo de atualizar recordes
 atualizar_recorde_pessoal("Adho_Mukha_Svanasana", 90.5)
 atualizar_recorde_pessoal("Virabhadrasana_One", 85.0)
-atualizar_recorde_pessoal("Adho_Mukha_Svanasana", 88.0)  # Não vai atualizar porque é inferior
+atualizar_recorde_pessoal("Adho_Mukha_Svanasana", 92.0)  # Não vai atualizar porque é inferior
