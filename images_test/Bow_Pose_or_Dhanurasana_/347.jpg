@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>bikramyogaharlem.com</title>
+	<meta name="robots" content="noindex, nofollow">
+	<style type="text/css">
+		.container{position: fixed; left: 20px; right: 20px; top:20px; bottom: 20px; background-color: #FFF; color:#000; text-align: center;background: url(//img.sedoparking.com/templates/bg/arrows-1-colors-3.png) #fbfbfb no-repeat center top;background-size: 100%;}
+		.content{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 98%; padding:10px; }
+        .note-premium{background: #198400;color: #FFF;padding: 5px 15px;font-weight: bold;}
+        body{background: #000;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content">
+		    <h1>bikramyogaharlem.com</h1>
+		    <div>
+		        <p><span class="note-premium">Premium Domain</span></p>
+		        <p>Discourage search engines from indexing this site using robots.txt.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
