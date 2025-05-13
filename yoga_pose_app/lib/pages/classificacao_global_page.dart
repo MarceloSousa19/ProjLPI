@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ClassificacaoGlobalPage extends StatefulWidget {
@@ -26,54 +27,52 @@ class _ClassificacaoGlobalPageState extends State<ClassificacaoGlobalPage> {
 
       if (await fileInd.exists()) {
         final data = json.decode(await fileInd.readAsString());
-        final lista = List<Map<String, dynamic>>.from(data);
-        lista.sort((a, b) => (b['pontuacao'] ?? 0).compareTo(a['pontuacao'] ?? 0));
         setState(() {
-          individuais = lista;
+          individuais = List<Map<String, dynamic>>.from(data);
+          individuais.sort((a, b) => (b['pontuacao'] ?? 0).compareTo(a['pontuacao'] ?? 0));
         });
+        print('📁 Individuais carregados: ${individuais.length}');
       }
-
       if (await fileGrp.exists()) {
         final data = json.decode(await fileGrp.readAsString());
-        final lista = List<Map<String, dynamic>>.from(data);
-        lista.sort((a, b) => (b['pontuacao'] ?? 0).compareTo(a['pontuacao'] ?? 0));
         setState(() {
-          grupos = lista;
+          grupos = List<Map<String, dynamic>>.from(data);
+          grupos.sort((a, b) => (b['pontuacao'] ?? 0).compareTo(a['pontuacao'] ?? 0));
         });
+        print('📁 Grupos carregados: ${grupos.length}');
       }
     } catch (e) {
       debugPrint('Erro ao carregar classificações: $e');
     }
   }
 
-  Widget _buildTabela(String titulo, List<Map<String, dynamic>> dados) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(titulo, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10),
-          ...List.generate(dados.take(10).length, (i) {
-            final e = dados[i];
-            final nome = e['nome'];
-            final pontuacao = e['pontuacao'];
-            final temMedalha = e['medalha'] == true;
+  Widget _buildTabela(String titulo, List<Map<String, dynamic>> dados, {bool grupo = false}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(titulo, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),
+        ...List.generate(dados.take(10).length, (i) {
+          final e = dados[i];
+          final nome = e['nome'] ?? 'Desconhecido';
+          final pontuacao = e['pontuacao'] ?? 0;
+          final temMedalha = e['medalha'] == true;
 
-            return ListTile(
-              leading: Text("${i + 1}.", style: const TextStyle(fontSize: 18)),
-              title: Text(nome, style: const TextStyle(fontSize: 18)),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (temMedalha) const Icon(Icons.emoji_events, color: Colors.amber),
-                  const SizedBox(width: 6),
-                  Text("$pontuacao poses", style: const TextStyle(fontSize: 16)),
-                ],
-              ),
-            );
-          }),
-        ],
-      ),
+          return ListTile(
+            dense: true,
+            leading: Text("${i + 1}.", style: const TextStyle(fontSize: 16)),
+            title: Text(nome, style: const TextStyle(fontSize: 16)),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (temMedalha) const Icon(Icons.emoji_events, color: Colors.amber),
+                const SizedBox(width: 6),
+                Text("$pontuacao poses", style: const TextStyle(fontSize: 14)),
+              ],
+            ),
+          );
+        }),
+      ],
     );
   }
 
@@ -86,9 +85,9 @@ class _ClassificacaoGlobalPageState extends State<ClassificacaoGlobalPage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTabela("Top Jogadores", individuais),
-            const SizedBox(width: 24),
-            _buildTabela("Top Grupos", grupos),
+            Expanded(child: _buildTabela("Top Jogadores", individuais)),
+            const SizedBox(width: 20),
+            Expanded(child: _buildTabela("Top Grupos", grupos, grupo: true)),
           ],
         ),
       ),
