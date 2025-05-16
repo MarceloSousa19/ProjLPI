@@ -6,10 +6,12 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import joblib
 import os
 
-# Caminhos dos CSVs
+# Caminhos
 BASE_DIR = 'ProjLPI'
-TRAIN_CSV = os.path.join(BASE_DIR, 'shared_data/features_train_completo.csv')
-TEST_CSV = os.path.join(BASE_DIR, 'shared_data/features_test_completo.csv')
+SHARED_DIR = os.path.join(BASE_DIR, 'shared_data')
+
+TRAIN_CSV = os.path.join(SHARED_DIR, 'features_train_completo.csv')
+TEST_CSV = os.path.join(SHARED_DIR, 'features_test_completo.csv')
 
 # Carregar datasets
 train_df = pd.read_csv(TRAIN_CSV)
@@ -22,14 +24,14 @@ y_train = train_df['classe'].values
 X_test = test_df.drop(columns=['imagem', 'classe']).values
 y_test = test_df['classe'].values
 
-# Codificar labels (string → número)
+# Codificar labels
 label_encoder = LabelEncoder()
 y_train_encoded = label_encoder.fit_transform(y_train)
 y_test_encoded = label_encoder.transform(y_test)
 
 # Criar o MLP
 mlp = MLPClassifier(
-    hidden_layer_sizes=(256, 128, 64),  # 3 camadas
+    hidden_layer_sizes=(256, 128, 64),
     activation='relu',
     solver='adam',
     max_iter=1000,
@@ -43,7 +45,6 @@ print("✅ Treino concluído!")
 
 # Avaliar
 y_pred = mlp.predict(X_test)
-
 accuracy = accuracy_score(y_test_encoded, y_pred)
 print(f"\n🎯 Accuracy (completo): {accuracy * 100:.2f}%")
 
@@ -54,7 +55,11 @@ print("\n🧩 Confusion Matrix:")
 print(confusion_matrix(y_test_encoded, y_pred))
 
 # Guardar modelo e label encoder
-joblib.dump(mlp, os.path.join(BASE_DIR, 'mlp_pose_classifier.joblib'))
-joblib.dump(label_encoder, os.path.join(BASE_DIR, 'label_encoder.joblib'))
-print(f"\n💾 Modelo guardado em {BASE_DIR}/mlp_pose_classifier.joblib")
-print(f"💾 LabelEncoder guardado em {BASE_DIR}/label_encoder.joblib")
+MODEL_PATH = os.path.join(SHARED_DIR, 'mlp_pose_classifier.joblib')
+ENCODER_PATH = os.path.join(SHARED_DIR, 'label_encoder.joblib')
+
+joblib.dump(mlp, MODEL_PATH)
+joblib.dump(label_encoder, ENCODER_PATH)
+
+print(f"\n💾 Modelo guardado em {MODEL_PATH}")
+print(f"💾 LabelEncoder guardado em {ENCODER_PATH}")

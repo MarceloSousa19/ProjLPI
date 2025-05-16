@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'avaliacao_principiante.dart';
+import 'avaliacao_nivel_page.dart';
+/* import 'avaliacao_principiante.dart';
 import 'avaliacao_intermedio.dart';
 import 'avaliacao_avancado.dart';
 import 'avaliacao_mestre.dart';
-
+*/
 class AvaliacaoPage extends StatefulWidget {
   const AvaliacaoPage({super.key});
 
@@ -17,7 +18,7 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
   bool desbloqueadoAvancado = false;
   bool desbloqueadoMestre = false;
 
-  void _navegarParaNivel(String nivel) {
+  /* void _navegarParaNivel(String nivel) {
     Widget page;
     switch (nivel) {
       case 'Principiante':
@@ -39,6 +40,16 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => page),
+    );
+  }
+*/
+
+  void _navegarParaNivel(String nivel) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => AvaliacaoNivelPage(nivel: nivel),
+      ),
     );
   }
 

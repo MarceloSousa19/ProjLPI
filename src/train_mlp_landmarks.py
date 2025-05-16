@@ -6,10 +6,12 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import joblib
 import os
 
-# Paths
+# Caminhos
 BASE_DIR = 'ProjLPI'
-TRAIN_CSV = os.path.join(BASE_DIR, 'shared_data/features_train_normalized.csv')
-TEST_CSV = os.path.join(BASE_DIR, 'shared_data/features_test_normalized.csv')
+SHARED_DIR = os.path.join(BASE_DIR, 'shared_data')
+
+TRAIN_CSV = os.path.join(SHARED_DIR, 'features_train_normalized.csv')
+TEST_CSV = os.path.join(SHARED_DIR, 'features_test_normalized.csv')
 
 # Carregar datasets
 train_df = pd.read_csv(TRAIN_CSV)
@@ -54,6 +56,10 @@ print("🧩 Confusion Matrix:")
 print(confusion_matrix(y_test_encoded, y_pred))
 
 # Guardar modelo
-joblib.dump(mlp, os.path.join(BASE_DIR, 'mlp_landmarks.joblib'))
-joblib.dump(label_encoder, os.path.join(BASE_DIR, 'label_encoder_landmarks.joblib'))
+MODEL_PATH = os.path.join(SHARED_DIR, 'mlp_landmarks.joblib')
+ENCODER_PATH = os.path.join(SHARED_DIR, 'label_encoder_landmarks.joblib')
+
+joblib.dump(mlp, MODEL_PATH)
+joblib.dump(label_encoder, ENCODER_PATH)
+
 print("💾 Modelo e codificador guardados com sucesso.")

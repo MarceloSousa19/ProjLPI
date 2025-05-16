@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:yoga_pose_app/config.dart';
 
 class ClassificacoesPessoaisPage extends StatefulWidget {
   const ClassificacoesPessoaisPage({super.key});
@@ -10,24 +11,27 @@ class ClassificacoesPessoaisPage extends StatefulWidget {
 }
 
 class _ClassificacoesPessoaisPageState extends State<ClassificacoesPessoaisPage> {
-  List<Map<String, dynamic>> _classificacoes = [];
+  Map<String, dynamic> classificacoes = {};
+  bool carregando = true;
 
   @override
   void initState() {
     super.initState();
-    _carregarClassificacoes();
+    carregarClassificacoes();
   }
 
-  Future<void> _carregarClassificacoes() async {
+  Future<void> carregarClassificacoes() async {
     try {
-      final String jsonString = await rootBundle.loadString('shared_data/recordes_pessoais.json');
-      final List<dynamic> dados = json.decode(jsonString);
-
-      setState(() {
-        _classificacoes = dados.cast<Map<String, dynamic>>();
-      });
+      final res = await http.get(Uri.parse('${AppConfig.baseUrlBackend2}/classificacao_pessoal'));
+      if (res.statusCode == 200) {
+        setState(() {
+          classificacoes = jsonDecode(res.body);
+          carregando = false;
+        });
+      }
     } catch (e) {
-      debugPrint('Erro ao carregar classificações: $e');
+      print("Erro ao buscar classificações: $e");
+      setState(() => carregando = false);
     }
   }
 
@@ -35,18 +39,34 @@ class _ClassificacoesPessoaisPageState extends State<ClassificacoesPessoaisPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Classificações Pessoais')),
-      body: _classificacoes.isEmpty
-          ? const Center(child: Text('Nenhuma classificação disponível.'))
-          : ListView.builder(
-        itemCount: _classificacoes.length,
-        itemBuilder: (context, index) {
-          final item = _classificacoes[index];
-          return ListTile(
-            leading: const Icon(Icons.check_circle_outline),
-            title: Text(item['nomePose'].replaceAll('_', ' ')),
-            trailing: Text('${item['precisao'].toStringAsFixed(1)}%'),
+      body: carregando
+          ? const Center(child: CircularProgressIndicator())
+          : classificacoes.isEmpty
+          ? const Center(child: Text("Nenhuma classificação encontrada"))
+          : ListView(
+        padding: const EdgeInsets.all(16),
+        children: classificacoes.entries.map((entry) {
+          final nivel = entry.key;
+          final poses = entry.value as List<dynamic>;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '🧘 Nível: $nivel',
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              ...poses.map((p) => ListTile(
+                title: Text(p['pose'].replaceAll('_', ' ')),
+                trailing: Text(p['precisao'] != null
+                    ? '${(p['precisao'] as double).toStringAsFixed(1)}%'
+                    : '—'),
+              )),
+              const Divider(),
+            ],
           );
-        },
+        }).toList(),
       ),
     );
   }
