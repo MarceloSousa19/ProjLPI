@@ -1,0 +1,832 @@
+{
+  "Akarna_Dhanurasana": {
+    "ang_1": 0.84375,
+    "ang_2": 0.84726,
+    "ang_3": 0.61513,
+    "ang_4": 0.44506,
+    "ang_5": 0.49023,
+    "ang_6": 0.46952,
+    "ang_7": 0.93303,
+    "ang_8": 0.86229
+  },
+  "Bharadvaja's_Twist_pose_or_Bharadvajasana_I_": {
+    "ang_1": 0.65533,
+    "ang_2": 0.66508,
+    "ang_3": 0.13573,
+    "ang_4": 0.08888,
+    "ang_5": 0.49092,
+    "ang_6": 0.57797,
+    "ang_7": 0.92577,
+    "ang_8": 0.97618
+  },
+  "Boat_Pose_or_Paripurna_Navasana_": {
+    "ang_1": 0.77393,
+    "ang_2": 0.8266,
+    "ang_3": 0.20821,
+    "ang_4": 0.28693,
+    "ang_5": 0.89883,
+    "ang_6": 0.96019,
+    "ang_7": 0.95284,
+    "ang_8": 0.97754
+  },
+  "Bound_Angle_Pose_or_Baddha_Konasana_": {
+    "ang_1": 0.80016,
+    "ang_2": 0.74342,
+    "ang_3": 0.60518,
+    "ang_4": 0.52733,
+    "ang_5": 0.93985,
+    "ang_6": 0.97841,
+    "ang_7": 0.92436,
+    "ang_8": 0.94822
+  },
+  "Bow_Pose_or_Dhanurasana_": {
+    "ang_1": 0.90893,
+    "ang_2": 0.78124,
+    "ang_3": 0.11743,
+    "ang_4": 0.24004,
+    "ang_5": 0.94759,
+    "ang_6": 0.94943,
+    "ang_7": 0.98691,
+    "ang_8": 0.99286
+  },
+  "Bridge_Pose_or_Setu_Bandha_Sarvangasana_": {
+    "ang_1": 0.73353,
+    "ang_2": 0.78882,
+    "ang_3": 0.68416,
+    "ang_4": 0.61681,
+    "ang_5": 0.6663,
+    "ang_6": 0.69636,
+    "ang_7": 0.92168,
+    "ang_8": 0.97799
+  },
+  "Camel_Pose_or_Ustrasana_": {
+    "ang_1": 0.90512,
+    "ang_2": 0.92353,
+    "ang_3": 0.89571,
+    "ang_4": 0.6029,
+    "ang_5": 0.69022,
+    "ang_6": 0.47777,
+    "ang_7": 0.70944,
+    "ang_8": 0.51069
+  },
+  "Cat_Cow_Pose_or_Marjaryasana_": {
+    "ang_1": 0.77741,
+    "ang_2": 0.72427,
+    "ang_3": 0.72218,
+    "ang_4": 0.52316,
+    "ang_5": 0.65156,
+    "ang_6": 0.65395,
+    "ang_7": 0.78942,
+    "ang_8": 0.82256
+  },
+  "Chair_Pose_or_Utkatasana_": {
+    "ang_1": 0.60489,
+    "ang_2": 0.74613,
+    "ang_3": 0.71523,
+    "ang_4": 0.78026,
+    "ang_5": 0.87355,
+    "ang_6": 0.91604,
+    "ang_7": 0.8417,
+    "ang_8": 0.83601
+  },
+  "Child_Pose_or_Balasana_": {
+    "ang_1": 0.77151,
+    "ang_2": 0.82216,
+    "ang_3": 0.87774,
+    "ang_4": 0.93069,
+    "ang_5": 0.75125,
+    "ang_6": 0.76556,
+    "ang_7": 0.8267,
+    "ang_8": 0.86891
+  },
+  "Cobra_Pose_or_Bhujangasana_": {
+    "ang_1": 0.8856,
+    "ang_2": 0.8912,
+    "ang_3": 0.7887,
+    "ang_4": 0.79899,
+    "ang_5": 0.94077,
+    "ang_6": 0.93374,
+    "ang_7": 0.99244,
+    "ang_8": 0.99257
+  },
+  "Cockerel_Pose": {
+    "ang_1": 0.83164,
+    "ang_2": 0.88017,
+    "ang_3": 0.56064,
+    "ang_4": 0.60201,
+    "ang_5": 0.9099,
+    "ang_6": 0.89757,
+    "ang_7": 0.90634,
+    "ang_8": 0.8797
+  },
+  "Corpse_Pose_or_Savasana_": {
+    "ang_1": 0.90262,
+    "ang_2": 0.96992,
+    "ang_3": 0.62283,
+    "ang_4": 0.42943,
+    "ang_5": 0.94038,
+    "ang_6": 0.90899,
+    "ang_7": 0.98193,
+    "ang_8": 0.96886
+  },
+  "Cow_Face_Pose_or_Gomukhasana_": {
+    "ang_1": 0.9593,
+    "ang_2": 0.94099,
+    "ang_3": 0.8014,
+    "ang_4": 0.85116,
+    "ang_5": 0.68633,
+    "ang_6": 0.7076,
+    "ang_7": 0.88933,
+    "ang_8": 0.90466
+  },
+  "Crane_(Crow)_Pose_or_Bakasana_": {
+    "ang_1": 0.62111,
+    "ang_2": 0.88296,
+    "ang_3": 0.35971,
+    "ang_4": 0.63649,
+    "ang_5": 0.97055,
+    "ang_6": 0.95636,
+    "ang_7": 0.97797,
+    "ang_8": 0.97298
+  },
+  "Dolphin_Plank_Pose_or_Makara_Adho_Mukha_Svanasana_": {
+    "ang_1": 0.74737,
+    "ang_2": 0.98889,
+    "ang_3": 0.36374,
+    "ang_4": 0.50167,
+    "ang_5": 0.90093,
+    "ang_6": 0.89383,
+    "ang_7": 0.93478,
+    "ang_8": 0.95317
+  },
+  "Dolphin_Pose_or_Ardha_Pincha_Mayurasana_": {
+    "ang_1": 0.84763,
+    "ang_2": 0.54575,
+    "ang_3": 0.93377,
+    "ang_4": 0.57609,
+    "ang_5": 0.5739,
+    "ang_6": 0.53525,
+    "ang_7": 0.93351,
+    "ang_8": 0.93768
+  },
+  "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_": {
+    "ang_1": 0.95804,
+    "ang_2": 0.68767,
+    "ang_3": 0.97652,
+    "ang_4": 0.61453,
+    "ang_5": 0.61039,
+    "ang_6": 0.58923,
+    "ang_7": 0.9212,
+    "ang_8": 0.91715
+  },
+  "Eagle_Pose_or_Garudasana_": {
+    "ang_1": 0.617,
+    "ang_2": 0.80955,
+    "ang_3": 0.63451,
+    "ang_4": 0.82699,
+    "ang_5": 0.65505,
+    "ang_6": 0.90618,
+    "ang_7": 0.6642,
+    "ang_8": 0.73037
+  },
+  "Eight-Angle_Pose_or_Astavakrasana_": {
+    "ang_1": 0.93854,
+    "ang_2": 0.85875,
+    "ang_3": 0.10207,
+    "ang_4": 0.45898,
+    "ang_5": 0.925,
+    "ang_6": 0.93871,
+    "ang_7": 0.97252,
+    "ang_8": 0.97137
+  },
+  "Extended_Puppy_Pose_or_Uttana_Shishosana_": {
+    "ang_1": 0.81829,
+    "ang_2": 0.7333,
+    "ang_3": 0.85523,
+    "ang_4": 0.83697,
+    "ang_5": 0.60058,
+    "ang_6": 0.50949,
+    "ang_7": 0.53932,
+    "ang_8": 0.4661
+  },
+  "Extended_Revolved_Side_Angle_Pose_or_Utthita_Parsvakonasana_": {
+    "ang_1": 0.90793,
+    "ang_2": 0.92797,
+    "ang_3": 0.82582,
+    "ang_4": 0.76569,
+    "ang_5": 0.25128,
+    "ang_6": 0.90856,
+    "ang_7": 0.69007,
+    "ang_8": 0.97546
+  },
+  "Extended_Revolved_Triangle_Pose_or_Utthita_Trikonasana_": {
+    "ang_1": 0.85891,
+    "ang_2": 0.96768,
+    "ang_3": 0.55508,
+    "ang_4": 0.77842,
+    "ang_5": 0.79335,
+    "ang_6": 0.64658,
+    "ang_7": 0.94554,
+    "ang_8": 0.92014
+  },
+  "Feathered_Peacock_Pose_or_Pincha_Mayurasana_": {
+    "ang_1": 0.69927,
+    "ang_2": 0.6815,
+    "ang_3": 0.95281,
+    "ang_4": 0.92889,
+    "ang_5": 0.78904,
+    "ang_6": 0.82195,
+    "ang_7": 0.95369,
+    "ang_8": 0.97401
+  },
+  "Firefly_Pose_or_Tittibhasana_": {
+    "ang_1": 0.73403,
+    "ang_2": 0.82106,
+    "ang_3": 0.47129,
+    "ang_4": 0.56524,
+    "ang_5": 0.91943,
+    "ang_6": 0.8228,
+    "ang_7": 0.97061,
+    "ang_8": 0.8477
+  },
+  "Fish_Pose_or_Matsyasana_": {
+    "ang_1": 0.87652,
+    "ang_2": 0.69547,
+    "ang_3": 0.78683,
+    "ang_4": 0.69844,
+    "ang_5": 0.80356,
+    "ang_6": 0.93859,
+    "ang_7": 0.92518,
+    "ang_8": 0.79967
+  },
+  "Four-Limbed_Staff_Pose_or_Chaturanga_Dandasana_": {
+    "ang_1": 0.74114,
+    "ang_2": 0.62479,
+    "ang_3": 0.42752,
+    "ang_4": 0.53435,
+    "ang_5": 0.95165,
+    "ang_6": 0.84518,
+    "ang_7": 0.968,
+    "ang_8": 0.93908
+  },
+  "Frog_Pose_or_Bhekasana": {
+    "ang_1": 0.62399,
+    "ang_2": 0.45055,
+    "ang_3": 0.56667,
+    "ang_4": 0.39915,
+    "ang_5": 0.82916,
+    "ang_6": 0.8379,
+    "ang_7": 0.84119,
+    "ang_8": 0.87718
+  },
+  "Garland_Pose_or_Malasana_": {
+    "ang_1": 0.71629,
+    "ang_2": 0.86255,
+    "ang_3": 0.43386,
+    "ang_4": 0.69741,
+    "ang_5": 0.97177,
+    "ang_6": 0.96652,
+    "ang_7": 0.96978,
+    "ang_8": 0.94993
+  },
+  "Gate_Pose_or_Parighasana_": {
+    "ang_1": 0.84813,
+    "ang_2": 0.94353,
+    "ang_3": 0.41514,
+    "ang_4": 0.92354,
+    "ang_5": 0.4684,
+    "ang_6": 0.91808,
+    "ang_7": 0.78386,
+    "ang_8": 0.61359
+  },
+  "Half_Lord_of_the_Fishes_Pose_or_Ardha_Matsyendrasana_": {
+    "ang_1": 0.63315,
+    "ang_2": 0.71215,
+    "ang_3": 0.61692,
+    "ang_4": 0.27281,
+    "ang_5": 0.86202,
+    "ang_6": 0.57333,
+    "ang_7": 0.84096,
+    "ang_8": 0.63082
+  },
+  "Half_Moon_Pose_or_Ardha_Chandrasana_": {
+    "ang_1": 0.96262,
+    "ang_2": 0.91814,
+    "ang_3": 0.82432,
+    "ang_4": 0.11214,
+    "ang_5": 0.99111,
+    "ang_6": 0.94881,
+    "ang_7": 0.97068,
+    "ang_8": 0.94379
+  },
+  "Handstand_pose_or_Adho_Mukha_Vrksasana_": {
+    "ang_1": 0.96278,
+    "ang_2": 0.80362,
+    "ang_3": 0.9451,
+    "ang_4": 0.83458,
+    "ang_5": 0.91071,
+    "ang_6": 0.99292,
+    "ang_7": 0.94633,
+    "ang_8": 0.89674
+  },
+  "Happy_Baby_Pose_or_Ananda_Balasana_": {
+    "ang_1": 0.74216,
+    "ang_2": 0.73299,
+    "ang_3": 0.5087,
+    "ang_4": 0.5749,
+    "ang_5": 0.43424,
+    "ang_6": 0.36555,
+    "ang_7": 0.94105,
+    "ang_8": 0.88419
+  },
+  "Head-to-Knee_Forward_Bend_pose_or_Janu_Sirsasana_": {
+    "ang_1": 0.56932,
+    "ang_2": 0.65193,
+    "ang_3": 0.39603,
+    "ang_4": 0.27829,
+    "ang_5": 0.89044,
+    "ang_6": 0.8334,
+    "ang_7": 0.97452,
+    "ang_8": 0.84331
+  },
+  "Heron_Pose_or_Krounchasana_": {
+    "ang_1": 0.76847,
+    "ang_2": 0.60402,
+    "ang_3": 0.84558,
+    "ang_4": 0.94164,
+    "ang_5": 0.09149,
+    "ang_6": 0.53251,
+    "ang_7": 0.90181,
+    "ang_8": 0.08189
+  },
+  "Intense_Side_Stretch_Pose_or_Parsvottanasana_": {
+    "ang_1": 0.56018,
+    "ang_2": 0.65867,
+    "ang_3": 0.70607,
+    "ang_4": 0.80442,
+    "ang_5": 0.51703,
+    "ang_6": 0.77948,
+    "ang_7": 0.95882,
+    "ang_8": 0.88523
+  },
+  "Legs-Up-the-Wall_Pose_or_Viparita_Karani_": {
+    "ang_1": 0.9472,
+    "ang_2": 0.96588,
+    "ang_3": 0.49586,
+    "ang_4": 0.6943,
+    "ang_5": 0.68157,
+    "ang_6": 0.71227,
+    "ang_7": 0.94961,
+    "ang_8": 0.98768
+  },
+  "Locust_Pose_or_Salabhasana_": {
+    "ang_1": 0.70568,
+    "ang_2": 0.87042,
+    "ang_3": 0.88027,
+    "ang_4": 0.8906,
+    "ang_5": 0.77406,
+    "ang_6": 0.76278,
+    "ang_7": 0.84932,
+    "ang_8": 0.87974
+  },
+  "Lord_of_the_Dance_Pose_or_Natarajasana_": {
+    "ang_1": 0.98026,
+    "ang_2": 0.75655,
+    "ang_3": 0.84149,
+    "ang_4": 0.21231,
+    "ang_5": 0.88092,
+    "ang_6": 0.86061,
+    "ang_7": 0.95121,
+    "ang_8": 0.91689
+  },
+  "Low_Lunge_pose_or_Anjaneyasana_": {
+    "ang_1": 0.86247,
+    "ang_2": 0.65557,
+    "ang_3": 0.91448,
+    "ang_4": 0.69434,
+    "ang_5": 0.76025,
+    "ang_6": 0.87231,
+    "ang_7": 0.93694,
+    "ang_8": 0.83591
+  },
+  "Noose_Pose_or_Pasasana_": {
+    "ang_1": 0.89933,
+    "ang_2": 0.57853,
+    "ang_3": 0.16991,
+    "ang_4": 0.33657,
+    "ang_5": 0.63308,
+    "ang_6": 0.68105,
+    "ang_7": 0.6991,
+    "ang_8": 0.78267
+  },
+  "Peacock_Pose_or_Mayurasana_": {
+    "ang_1": 0.61336,
+    "ang_2": 0.72912,
+    "ang_3": 0.38926,
+    "ang_4": 0.63304,
+    "ang_5": 0.82688,
+    "ang_6": 0.93083,
+    "ang_7": 0.74304,
+    "ang_8": 0.86019
+  },
+  "Pigeon_Pose_or_Kapotasana_": {
+    "ang_1": 0.82094,
+    "ang_2": 0.79248,
+    "ang_3": 0.78019,
+    "ang_4": 0.69274,
+    "ang_5": 0.42834,
+    "ang_6": 0.49246,
+    "ang_7": 0.52607,
+    "ang_8": 0.5622
+  },
+  "Plank_Pose_or_Kumbhakasana_": {
+    "ang_1": 0.74695,
+    "ang_2": 0.96937,
+    "ang_3": 0.34907,
+    "ang_4": 0.48807,
+    "ang_5": 0.89389,
+    "ang_6": 0.90832,
+    "ang_7": 0.93613,
+    "ang_8": 0.96185
+  },
+  "Plow_Pose_or_Halasana_": {
+    "ang_1": 0.90556,
+    "ang_2": 0.62185,
+    "ang_3": 0.07367,
+    "ang_4": 0.18024,
+    "ang_5": 0.97477,
+    "ang_6": 0.93246,
+    "ang_7": 0.94216,
+    "ang_8": 0.82493
+  },
+  "Pose_Dedicated_to_the_Sage_Koundinya_or_Eka_Pada_Koundinyanasana_I_and_II": {
+    "ang_1": 0.87914,
+    "ang_2": 0.78491,
+    "ang_3": 0.37989,
+    "ang_4": 0.14686,
+    "ang_5": 0.96237,
+    "ang_6": 0.95197,
+    "ang_7": 0.94274,
+    "ang_8": 0.93441
+  },
+  "Rajakapotasana": {
+    "ang_1": 0.55004,
+    "ang_2": 0.47892,
+    "ang_3": 0.85345,
+    "ang_4": 0.79395,
+    "ang_5": 0.53108,
+    "ang_6": 0.52843,
+    "ang_7": 0.85232,
+    "ang_8": 0.48696
+  },
+  "Reclining_Hand-to-Big-Toe_Pose_or_Supta_Padangusthasana_": {
+    "ang_1": 0.97215,
+    "ang_2": 0.98587,
+    "ang_3": 0.78921,
+    "ang_4": 0.52712,
+    "ang_5": 0.7706,
+    "ang_6": 0.78003,
+    "ang_7": 0.90101,
+    "ang_8": 0.91502
+  },
+  "Revolved_Head-to-Knee_Pose_or_Parivrtta_Janu_Sirsasana_": {
+    "ang_1": 0.88337,
+    "ang_2": 0.74048,
+    "ang_3": 0.79435,
+    "ang_4": 0.7651,
+    "ang_5": 0.56339,
+    "ang_6": 0.84957,
+    "ang_7": 0.69416,
+    "ang_8": 0.92673
+  },
+  "Scale_Pose_or_Tolasana_": {
+    "ang_1": 0.86786,
+    "ang_2": 0.86034,
+    "ang_3": 0.43206,
+    "ang_4": 0.38237,
+    "ang_5": 0.1502,
+    "ang_6": 0.15423,
+    "ang_7": 0.3273,
+    "ang_8": 0.28219
+  },
+  "Scorpion_pose_or_vrischikasana": {
+    "ang_1": 0.91801,
+    "ang_2": 0.90317,
+    "ang_3": 0.66156,
+    "ang_4": 0.65942,
+    "ang_5": 0.49562,
+    "ang_6": 0.39569,
+    "ang_7": 0.85938,
+    "ang_8": 0.90602
+  },
+  "Seated_Forward_Bend_pose_or_Paschimottanasana_": {
+    "ang_1": 0.94294,
+    "ang_2": 0.89606,
+    "ang_3": 0.84424,
+    "ang_4": 0.85652,
+    "ang_5": 0.16766,
+    "ang_6": 0.14465,
+    "ang_7": 0.87897,
+    "ang_8": 0.97733
+  },
+  "Shoulder-Pressing_Pose_or_Bhujapidasana_": {
+    "ang_1": 0.88677,
+    "ang_2": 0.89661,
+    "ang_3": 0.26384,
+    "ang_4": 0.38578,
+    "ang_5": 0.43688,
+    "ang_6": 0.11096,
+    "ang_7": 0.46527,
+    "ang_8": 0.34196
+  },
+  "Side-Reclining_Leg_Lift_pose_or_Anantasana_": {
+    "ang_1": 0.79038,
+    "ang_2": 0.9913,
+    "ang_3": 0.59517,
+    "ang_4": 0.81389,
+    "ang_5": 0.18833,
+    "ang_6": 0.92886,
+    "ang_7": 0.96074,
+    "ang_8": 0.74461
+  },
+  "Side_Crane_(Crow)_Pose_or_Parsva_Bakasana_": {
+    "ang_1": 0.60304,
+    "ang_2": 0.55735,
+    "ang_3": 0.42949,
+    "ang_4": 0.44712,
+    "ang_5": 0.8882,
+    "ang_6": 0.9054,
+    "ang_7": 0.90406,
+    "ang_8": 0.93617
+  },
+  "Side_Plank_Pose_or_Vasisthasana_": {
+    "ang_1": 0.93496,
+    "ang_2": 0.92744,
+    "ang_3": 0.60348,
+    "ang_4": 0.79522,
+    "ang_5": 0.94035,
+    "ang_6": 0.96154,
+    "ang_7": 0.96216,
+    "ang_8": 0.89016
+  },
+  "Sitting_pose_1_(normal)": {
+    "ang_1": 0.76238,
+    "ang_2": 0.76031,
+    "ang_3": 0.82704,
+    "ang_4": 0.83209,
+    "ang_5": 0.50894,
+    "ang_6": 0.50938,
+    "ang_7": 0.71819,
+    "ang_8": 0.77677
+  },
+  "Slpis_Hanumanasana_": {
+    "ang_1": 0.98719,
+    "ang_2": 0.82246,
+    "ang_3": 0.94316,
+    "ang_4": 0.81504,
+    "ang_5": 0.49217,
+    "ang_6": 0.76003,
+    "ang_7": 0.77727,
+    "ang_8": 0.93994
+  },
+  "Split_pose": {
+    "ang_1": 0.66413,
+    "ang_2": 0.88281,
+    "ang_3": 0.84586,
+    "ang_4": 0.97562,
+    "ang_5": 0.61968,
+    "ang_6": 0.61816,
+    "ang_7": 0.94342,
+    "ang_8": 0.91726
+  },
+  "Staff_Pose_or_Dandasana_": {
+    "ang_1": 0.76589,
+    "ang_2": 0.83572,
+    "ang_3": 0.85139,
+    "ang_4": 0.94751,
+    "ang_5": 0.46944,
+    "ang_6": 0.43776,
+    "ang_7": 0.98302,
+    "ang_8": 0.92074
+  },
+  "Standing_Forward_Bend_pose_or_Uttanasana_": {
+    "ang_1": 0.84232,
+    "ang_2": 0.85392,
+    "ang_3": 0.73228,
+    "ang_4": 0.80956,
+    "ang_5": 0.682,
+    "ang_6": 0.69586,
+    "ang_7": 0.94947,
+    "ang_8": 0.9104
+  },
+  "Standing_Split_pose_or_Urdhva_Prasarita_Eka_Padasana_": {
+    "ang_1": 0.86876,
+    "ang_2": 0.48425,
+    "ang_3": 0.8691,
+    "ang_4": 0.7429,
+    "ang_5": 0.46701,
+    "ang_6": 0.92153,
+    "ang_7": 0.98199,
+    "ang_8": 0.7899
+  },
+  "Standing_big_toe_hold_pose_or_Utthita_Padangusthasana": {
+    "ang_1": 0.94942,
+    "ang_2": 0.98877,
+    "ang_3": 0.52791,
+    "ang_4": 0.56123,
+    "ang_5": 0.67861,
+    "ang_6": 0.9298,
+    "ang_7": 0.95521,
+    "ang_8": 0.86871
+  },
+  "Supported_Headstand_pose_or_Salamba_Sirsasana_": {
+    "ang_1": 0.8332,
+    "ang_2": 0.87163,
+    "ang_3": 0.63461,
+    "ang_4": 0.67016,
+    "ang_5": 0.97302,
+    "ang_6": 0.89797,
+    "ang_7": 0.89716,
+    "ang_8": 0.95921
+  },
+  "Supported_Shoulderstand_pose_or_Salamba_Sarvangasana_": {
+    "ang_1": 0.97021,
+    "ang_2": 0.65497,
+    "ang_3": 0.67261,
+    "ang_4": 0.52554,
+    "ang_5": 0.93967,
+    "ang_6": 0.94115,
+    "ang_7": 0.76655,
+    "ang_8": 0.91406
+  },
+  "Supta_Baddha_Konasana_": {
+    "ang_1": 0.95445,
+    "ang_2": 0.96484,
+    "ang_3": 0.42246,
+    "ang_4": 0.63053,
+    "ang_5": 0.70851,
+    "ang_6": 0.9184,
+    "ang_7": 0.85695,
+    "ang_8": 0.65524
+  },
+  "Supta_Virasana_Vajrasana": {
+    "ang_1": 0.8137,
+    "ang_2": 0.54515,
+    "ang_3": 0.70332,
+    "ang_4": 0.81184,
+    "ang_5": 0.72672,
+    "ang_6": 0.94241,
+    "ang_7": 0.8638,
+    "ang_8": 0.56987
+  },
+  "Tortoise_Pose": {
+    "ang_1": 0.95185,
+    "ang_2": 0.80013,
+    "ang_3": 0.71415,
+    "ang_4": 0.59404,
+    "ang_5": 0.42887,
+    "ang_6": 0.37847,
+    "ang_7": 0.91437,
+    "ang_8": 0.95833
+  },
+  "Tree_Pose_or_Vrksasana_": {
+    "ang_1": 0.97666,
+    "ang_2": 0.97865,
+    "ang_3": 0.95687,
+    "ang_4": 0.91834,
+    "ang_5": 0.6065,
+    "ang_6": 0.88125,
+    "ang_7": 0.11555,
+    "ang_8": 0.78571
+  },
+  "Upward_Bow_(Wheel)_Pose_or_Urdhva_Dhanurasana_": {
+    "ang_1": 0.84378,
+    "ang_2": 0.73864,
+    "ang_3": 0.86187,
+    "ang_4": 0.7346,
+    "ang_5": 0.87685,
+    "ang_6": 0.73117,
+    "ang_7": 0.91721,
+    "ang_8": 0.97524
+  },
+  "Upward_Facing_Two-Foot_Staff_Pose_or_Dwi_Pada_Viparita_Dandasana_": {
+    "ang_1": 0.8475,
+    "ang_2": 0.71976,
+    "ang_3": 0.80067,
+    "ang_4": 0.83692,
+    "ang_5": 0.50402,
+    "ang_6": 0.50744,
+    "ang_7": 0.85853,
+    "ang_8": 0.8679
+  },
+  "Upward_Plank_Pose_or_Purvottanasana_": {
+    "ang_1": 0.93809,
+    "ang_2": 0.94792,
+    "ang_3": 0.50947,
+    "ang_4": 0.48528,
+    "ang_5": 0.88812,
+    "ang_6": 0.85266,
+    "ang_7": 0.90773,
+    "ang_8": 0.88982
+  },
+  "Virasana_or_Vajrasana": {
+    "ang_1": 0.84312,
+    "ang_2": 0.77858,
+    "ang_3": 0.09423,
+    "ang_4": 0.11118,
+    "ang_5": 0.81606,
+    "ang_6": 0.7824,
+    "ang_7": 0.96891,
+    "ang_8": 0.93028
+  },
+  "Warrior_III_Pose_or_Virabhadrasana_III_": {
+    "ang_1": 0.96743,
+    "ang_2": 0.95625,
+    "ang_3": 0.9142,
+    "ang_4": 0.92946,
+    "ang_5": 0.89925,
+    "ang_6": 0.52565,
+    "ang_7": 0.91262,
+    "ang_8": 0.81229
+  },
+  "Warrior_II_Pose_or_Virabhadrasana_II_": {
+    "ang_1": 0.91899,
+    "ang_2": 0.88891,
+    "ang_3": 0.62419,
+    "ang_4": 0.5531,
+    "ang_5": 0.53993,
+    "ang_6": 0.66081,
+    "ang_7": 0.61859,
+    "ang_8": 0.96832
+  },
+  "Warrior_I_Pose_or_Virabhadrasana_I_": {
+    "ang_1": 0.82649,
+    "ang_2": 0.70469,
+    "ang_3": 0.83015,
+    "ang_4": 0.96115,
+    "ang_5": 0.64698,
+    "ang_6": 0.80791,
+    "ang_7": 0.67032,
+    "ang_8": 0.9525
+  },
+  "Wide-Angle_Seated_Forward_Bend_pose_or_Upavistha_Konasana_": {
+    "ang_1": 0.77226,
+    "ang_2": 0.78619,
+    "ang_3": 0.86613,
+    "ang_4": 0.93692,
+    "ang_5": 0.74543,
+    "ang_6": 0.74504,
+    "ang_7": 0.80272,
+    "ang_8": 0.81391
+  },
+  "Wide-Legged_Forward_Bend_pose_or_Prasarita_Padottanasana_": {
+    "ang_1": 0.89918,
+    "ang_2": 0.94384,
+    "ang_3": 0.6848,
+    "ang_4": 0.6764,
+    "ang_5": 0.31585,
+    "ang_6": 0.25599,
+    "ang_7": 0.90882,
+    "ang_8": 0.94441
+  },
+  "Wild_Thing_pose_or_Camatkarasana_": {
+    "ang_1": 0.92825,
+    "ang_2": 0.81452,
+    "ang_3": 0.83205,
+    "ang_4": 0.54991,
+    "ang_5": 0.8486,
+    "ang_6": 0.8161,
+    "ang_7": 0.90339,
+    "ang_8": 0.97586
+  },
+  "Wind_Relieving_pose_or_Pawanmuktasana": {
+    "ang_1": 0.77996,
+    "ang_2": 0.42696,
+    "ang_3": 0.57773,
+    "ang_4": 0.16866,
+    "ang_5": 0.88502,
+    "ang_6": 0.31753,
+    "ang_7": 0.80331,
+    "ang_8": 0.26937
+  },
+  "Yogic_sleep_pose": {
+    "ang_1": 0.74037,
+    "ang_2": 0.68523,
+    "ang_3": 0.54782,
+    "ang_4": 0.48063,
+    "ang_5": 0.29046,
+    "ang_6": 0.23018,
+    "ang_7": 0.88664,
+    "ang_8": 0.86447
+  },
+  "viparita_virabhadrasana_or_reverse_warrior_pose": {
+    "ang_1": 0.98489,
+    "ang_2": 0.74259,
+    "ang_3": 0.19432,
+    "ang_4": 0.80846,
+    "ang_5": 0.92693,
+    "ang_6": 0.91767,
+    "ang_7": 0.8602,
+    "ang_8": 0.84127
+  }
+}
