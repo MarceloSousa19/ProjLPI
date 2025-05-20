@@ -1,7 +1,7 @@
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
+
 import 'live_pose_camera.dart';
 import 'live_pose_simulada.dart';
 import '../resultado_pose.dart';

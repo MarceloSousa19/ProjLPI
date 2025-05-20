@@ -1,93 +1,82 @@
+
 import 'package:flutter/material.dart';
 import '../resultado_pose.dart';
 import 'slideshow_feedback_page.dart';
 
-
 class FeedbackFinalPage extends StatelessWidget {
+  final List<ResultadoPose> resultados;
   final String nivel;
   final double mediaFinal;
-  final List<ResultadoPose> resultados;
+  final List<String> nomesPoses;
+  final List<double> precisoes;
   final bool passou;
   final VoidCallback onRepetir;
 
   const FeedbackFinalPage({
     Key? key,
+    required this.resultados,
     required this.nivel,
     required this.mediaFinal,
-    required this.resultados,
+    required this.nomesPoses,
+    required this.precisoes,
     required this.passou,
     required this.onRepetir,
   }) : super(key: key);
 
-  String _comentario(double precisao) {
-    if (precisao >= 90) return "Excelente 👌";
-    if (precisao >= 70) return "Bom 💪";
-    return "Atenção ❗";
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Resultado - $nivel')),
+      appBar: AppBar(
+        title: Text('Resultado Final - Nível $nivel'),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              passou ? '✅ Passou o nível!' : '❌ Falhou o nível',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: passou ? Colors.green : Colors.red),
+              passou ? '✅ Parabéns! Passaste o nível!' : '❌ Não passaste o nível',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            
+            const SizedBox(height: 16),
+            Text(
+              'Média final: ${mediaFinal.toStringAsFixed(1)}%',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 24),
+            Expanded(
+              child: ListView.builder(
+                itemCount: nomesPoses.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(nomesPoses[index]),
+                    trailing: Text('${precisoes[index].toStringAsFixed(1)}%'),
+                  );
+                },
+              ),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => SlideshowFeedbackPage(resultados: resultados),
+                    builder: (_) => SlideshowFeedbackPage(
+                      resultados: resultados,
+                      nivel: nivel,
+                      mediaFinal: mediaFinal,
+                      passou: passou,
+                      onRepetir: onRepetir,
+                    ),
                   ),
                 );
               },
-              child: const Text("Ver Slideshow Final"),
+              child: const Text('Ver Feedback Visual'),
             ),
-
-            Text(
-              'Média final: ${mediaFinal.toStringAsFixed(1)}%',
-              style: const TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 24),
-            Expanded(
-              child: ListView.builder(
-                itemCount: resultados.length,
-                itemBuilder: (context, index) {
-                  final r = resultados[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    child: ListTile(
-                      title: Text(r.nomePose.replaceAll('_', ' ')),
-                      subtitle: Text('Precisão: ${r.precisao.toStringAsFixed(1)}%'),
-                      trailing: Text(_comentario(r.precisao)),
-                    ),
-
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              icon: Icon(passou ? Icons.home : Icons.refresh),
-              label: Text(passou ? 'Voltar ao menu' : 'Tentar novamente'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: passou ? Colors.green : Colors.blue,
-                minimumSize: const Size(double.infinity, 50),
-              ),
-              onPressed: () {
-                if (passou) {
-                  Navigator.popUntil(context, (route) => route.isFirst);
-                } else {
-                  onRepetir();
-                }
-              },
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: onRepetir,
+              child: const Text('Repetir Nível'),
             ),
           ],
         ),

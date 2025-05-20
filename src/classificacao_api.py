@@ -3,7 +3,8 @@ from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
-from src.predict_pose import classificar_pose
+from predict_pose import classificar_pose
+
 
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)

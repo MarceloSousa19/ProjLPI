@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
@@ -43,13 +42,18 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
 
   Future<void> _carregarImagemPose() async {
     try {
-      final res = await http.get(Uri.parse('\${AppConfig.baseUrlBackend1}/imagem_pose/\${widget.poseEsperada}'));
+      final res = await http.get(Uri.parse('${AppConfig.baseUrlBackend1}/imagem_pose/${widget.poseEsperada}'));
       if (res.statusCode == 200) {
         final data = jsonDecode(res.body);
         final pasta = data['pasta'];
         final ficheiro = data['ficheiro'];
+
+        final imagemFinalUrl = '${AppConfig.baseUrlBackend1}/images/$pasta/$ficheiro';
+        final imagemRes = await http.get(Uri.parse(imagemFinalUrl));
+        final imagemBytes = imagemRes.bodyBytes;
+
         setState(() {
-          imagemUrl = '\${AppConfig.baseUrlBackend1}/images/\$pasta/\$ficheiro';
+          imagemUrl = imagemFinalUrl;
         });
 
         await Future.delayed(const Duration(seconds: 2));
@@ -62,12 +66,12 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
         widget.onResultado(ResultadoPose(
           nomePose: widget.poseEsperada,
           precisao: conf,
+          imagem: imagemBytes,
           correcoes: correcoes,
-          imagemBytes: Uint8List(0), // imagem vazia na simulação
         ));
       }
     } catch (e) {
-      print('Erro ao carregar imagem simulada: \$e');
+      print('Erro ao carregar imagem simulada: $e');
     }
   }
 
@@ -77,17 +81,17 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
       body: imagemUrl == null
           ? const Center(child: CircularProgressIndicator())
           : Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Image.network(imagemUrl!, height: 240),
-                ),
-                const Text(
-                  "A avaliar pose simulada...",
-                  style: TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Image.network(imagemUrl!, height: 240),
+          ),
+          const Text(
+            "A avaliar pose simulada...",
+            style: TextStyle(fontSize: 18),
+          ),
+        ],
+      ),
     );
   }
 }

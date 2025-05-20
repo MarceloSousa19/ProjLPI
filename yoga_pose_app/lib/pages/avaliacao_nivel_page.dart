@@ -17,6 +17,7 @@ class AvaliacaoNivelPage extends StatefulWidget {
 
 class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
   List<String> poses = [];
+  Map<String, double> precisoesPorPose = {};
   List<ResultadoPose> resultados = [];
   int indexAtual = 0;
 
@@ -41,9 +42,10 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
     }
   }
 
-  void _guardarResultado(String nomePose, double precisao) {
+  void _guardarResultado(ResultadoPose resultado) {
     setState(() {
-      precisoesPorPose[nomePose] = precisao;
+      precisoesPorPose[resultado.nomePose] = resultado.precisao;
+      resultados.add(resultado);
     });
 
     if (indexAtual + 1 < poses.length) {
@@ -54,6 +56,7 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
       _irParaFeedbackFinal();
     }
   }
+
 
   void _irParaFeedbackFinal() {
     final media = precisoesPorPose.values.fold(0.0, (a, b) => a + b) / precisoesPorPose.length;

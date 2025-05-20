@@ -112,15 +112,18 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
         final List<String> correcoes = List<String>.from(data['correcoes']);
 
         if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
-          _controller?.dispose();
 
-          widget.onResultado(ResultadoPose(
-            nomePose: widget.poseEsperada,
-            precisao: conf,
-            correcoes: correcoes,
-            imagemBytes: Uint8List.fromList(jpeg),
-          ));
-        }
+        final imagemCapturada = Uint8List.fromList(jpeg);
+        widget.onResultado(ResultadoPose(
+          nomePose: widget.poseEsperada,
+          precisao: conf,
+          imagem: imagemCapturada,
+          correcoes: correcoes,
+        ));
+
+  _controller?.dispose();
+  Navigator.pop(context);
+}
 
         setState(() {
           if (conf > _melhorConf) _melhorConf = conf;
