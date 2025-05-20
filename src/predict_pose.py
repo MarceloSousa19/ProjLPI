@@ -1,10 +1,11 @@
+
 import cv2
 import numpy as np
 import mediapipe as mp
-import joblib
+from joblib import load
+from src.historico_individual import guardar_historico_individual
+from src.feedback_pose import gerar_correcoes
 
-# --- Constantes dos landmarks ---
-LANDMARK_COUNT = 33
 LANDMARK_INDEXES = {
     'R_SHOULDER': 12, 'R_ELBOW': 14, 'R_WRIST': 16,
     'L_SHOULDER': 11, 'L_ELBOW': 13, 'L_WRIST': 15,
@@ -13,81 +14,82 @@ LANDMARK_INDEXES = {
     'NOSE': 0
 }
 
-# --- Função para calcular ângulo ---
+modelo = load("ProjLPI/shared_data/mlp_pose_classifier.joblib")
+label_encoder = load("ProjLPI/shared_data/label_encoder.joblib")
+
 def calcular_angulo(a, b, c):
     ba = a - b
     bc = c - b
     cos_angulo = np.dot(ba, bc) / (np.linalg.norm(ba) * np.linalg.norm(bc))
     cos_angulo = np.clip(cos_angulo, -1.0, 1.0)
     angulo = np.degrees(np.arccos(cos_angulo))
-    return round(angulo / 180.0, 5)  # normalizado para [0, 1]
+    return round(angulo / 180.0, 5)
 
-# --- Função para extrair os 107 features ---
-def extrair_features(imagem_path):
-    imagem = cv2.imread(imagem_path)
+def extrair_features(caminho_imagem):
+    imagem = cv2.imread(caminho_imagem)
     if imagem is None:
-        raise Exception(f"Erro ao abrir a imagem: {imagem_path}")
+        raise ValueError(f"Erro ao abrir a imagem: {caminho_imagem}")
 
     mp_pose = mp.solutions.pose
-    pose = mp_pose.Pose(static_image_mode=True)
-    results = pose.process(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
+    with mp_pose.Pose(static_image_mode=True) as pose:
+        results = pose.process(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
 
     if not results.pose_landmarks:
-        raise Exception("Landmarks não encontrados na imagem.")
+        raise ValueError("Landmarks não encontrados na imagem.")
 
     pontos = results.pose_landmarks.landmark
-
-    # --- Normalizar landmarks ---
     coord = np.array([[lm.x, lm.y, lm.z] for lm in pontos])
     mid_hip = (coord[LANDMARK_INDEXES['L_HIP']] + coord[LANDMARK_INDEXES['R_HIP']]) / 2
     scale = np.linalg.norm(coord[LANDMARK_INDEXES['NOSE']] - mid_hip)
     if scale == 0:
-        raise Exception("Erro na normalização dos landmarks.")
-    norm_coords = (coord - mid_hip) / scale
-    features_landmarks = norm_coords.flatten().tolist()  # 99
+        raise ValueError("Erro na normalização: escala nula.")
 
-    # --- Calcular 8 ângulos normalizados ---
+    norm_coords = (coord - mid_hip) / scale
+    flatten = norm_coords.flatten().tolist()
+
     def p(idx): return norm_coords[idx]
     angulos = [
-        calcular_angulo(p(LANDMARK_INDEXES['R_SHOULDER']), p(LANDMARK_INDEXES['R_ELBOW']), p(LANDMARK_INDEXES['R_WRIST'])),
-        calcular_angulo(p(LANDMARK_INDEXES['L_SHOULDER']), p(LANDMARK_INDEXES['L_ELBOW']), p(LANDMARK_INDEXES['L_WRIST'])),
-
-        calcular_angulo(p(LANDMARK_INDEXES['R_ELBOW']), p(LANDMARK_INDEXES['R_SHOULDER']), p(LANDMARK_INDEXES['R_HIP'])),
-        calcular_angulo(p(LANDMARK_INDEXES['L_ELBOW']), p(LANDMARK_INDEXES['L_SHOULDER']), p(LANDMARK_INDEXES['L_HIP'])),
-
-        calcular_angulo(p(LANDMARK_INDEXES['R_SHOULDER']), p(LANDMARK_INDEXES['R_HIP']), p(LANDMARK_INDEXES['R_KNEE'])),
-        calcular_angulo(p(LANDMARK_INDEXES['L_SHOULDER']), p(LANDMARK_INDEXES['L_HIP']), p(LANDMARK_INDEXES['L_KNEE'])),
-
-        calcular_angulo(p(LANDMARK_INDEXES['R_HIP']), p(LANDMARK_INDEXES['R_KNEE']), p(LANDMARK_INDEXES['R_ANKLE'])),
-        calcular_angulo(p(LANDMARK_INDEXES['L_HIP']), p(LANDMARK_INDEXES['L_KNEE']), p(LANDMARK_INDEXES['L_ANKLE']))
+        calcular_angulo(p(12), p(14), p(16)),
+        calcular_angulo(p(11), p(13), p(15)),
+        calcular_angulo(p(14), p(12), p(24)),
+        calcular_angulo(p(13), p(11), p(23)),
+        calcular_angulo(p(12), p(24), p(26)),
+        calcular_angulo(p(11), p(23), p(25)),
+        calcular_angulo(p(24), p(26), p(28)),
+        calcular_angulo(p(23), p(25), p(27))
     ]
 
-    return np.array(features_landmarks + angulos).reshape(1, -1)
+    return np.array(flatten + angulos).reshape(1, -1), angulos
 
-# --- Carregar modelo e label encoder ---
-modelo = joblib.load("ProjLPI/shared_data/mlp_pose_classifier.joblib")
-label_encoder = joblib.load("ProjLPI/shared_data/label_encoder.joblib")
-
-# --- Função reutilizável para usar no Flask ---
 def classificar_pose(caminho_imagem):
-    X = extrair_features(caminho_imagem)
-    y_pred = modelo.predict(X)[0]
-    y_proba = modelo.predict_proba(X)[0]
-    classe = label_encoder.inverse_transform([y_pred])[0]
-    probabilidade = float(np.max(y_proba))  # converter para float nativo
+    try:
+        X, angulos = extrair_features(caminho_imagem)
+        probs = modelo.predict_proba(X)[0]
+        pred_index = np.argmax(probs)
+        classe = label_encoder.inverse_transform([pred_index])[0]
+        precisao = float(probs[pred_index])
 
-    return {
-        "pose": classe,
-        "precisao": round(probabilidade, 4)
-    }
+        guardar_historico_individual(classe, precisao)
 
-# --- Execução manual opcional (para testes) ---
+        correcoes = gerar_correcoes(classe, angulos)
+
+        return {
+            "pose": classe,
+            "precisao": round(precisao * 100, 1),
+            "correcoes": correcoes
+        }
+
+    except Exception as e:
+        raise RuntimeError(f"Erro na classificação: {str(e)}")
+
 if __name__ == "__main__":
-    imagem_path = input("🖼️ Caminho da imagem para prever a pose: ").strip()
-
+    imagem_path = input("🖼️ Caminho da imagem: ").strip()
     try:
         resultado = classificar_pose(imagem_path)
-        print(f"\n🧘 Pose prevista: {resultado['pose']}")
-        print(f"🎯 Confiança: {resultado['precisao'] * 100:.2f}%")
+        print(f"🧘 Pose prevista: {resultado['pose']}")
+        print(f"🎯 Precisão: {resultado['precisao']}%")
+        print("🛠️ Correções:")
+        for c in resultado["correcoes"]:
+            print(f" - {c}")
     except Exception as e:
-        print(f"\n❌ Erro: {e}")
+        print(f"❌ Erro: {e}")

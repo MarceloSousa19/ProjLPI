@@ -1,12 +1,15 @@
+
+import 'dart:convert';
 import 'dart:math';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:yoga_pose_app/config.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import '../resultado_pose.dart';
 
 class LivePoseDetectorSimuladaPage extends StatefulWidget {
   final String poseEsperada;
-  final void Function(String nomePose, double precisao) onResultado;
+  final void Function(ResultadoPose resultado) onResultado;
 
   const LivePoseDetectorSimuladaPage({
     Key? key,
@@ -30,7 +33,6 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
   @override
   void didUpdateWidget(covariant LivePoseDetectorSimuladaPage oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     if (oldWidget.poseEsperada != widget.poseEsperada) {
       setState(() {
         imagemUrl = null;
@@ -41,83 +43,51 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
 
   Future<void> _carregarImagemPose() async {
     try {
-      print('→ A carregar imagem da pose: ${widget.poseEsperada}');
-      final res = await http.get(Uri.parse('${AppConfig.baseUrlBackend1}/imagem_pose/${widget.poseEsperada}'));
-
+      final res = await http.get(Uri.parse('\${AppConfig.baseUrlBackend1}/imagem_pose/\${widget.poseEsperada}'));
       if (res.statusCode == 200) {
         final data = jsonDecode(res.body);
         final pasta = data['pasta'];
         final ficheiro = data['ficheiro'];
-        final url = '${AppConfig.baseUrlBackend1}/images_test/$pasta/$ficheiro';
-
-        print('→ URL da imagem (simulada): $url');
         setState(() {
-          imagemUrl = url;
+          imagemUrl = '\${AppConfig.baseUrlBackend1}/images/\$pasta/\$ficheiro';
         });
-      } else {
-        print('→ Erro HTTP ao obter imagem: ${res.statusCode}');
+
+        await Future.delayed(const Duration(seconds: 2));
+        final random = Random();
+        final conf = 70 + random.nextDouble() * 30;
+        final List<String> correcoes = conf >= 90
+            ? <String>[]
+            : <String>["Ajusta a postura dos braços", "Inclina ligeiramente o tronco"];
+
+        widget.onResultado(ResultadoPose(
+          nomePose: widget.poseEsperada,
+          precisao: conf,
+          correcoes: correcoes,
+          imagemBytes: Uint8List(0), // imagem vazia na simulação
+        ));
       }
     } catch (e) {
-      print('→ Erro ao carregar imagem da pose simulada: $e');
+      print('Erro ao carregar imagem simulada: \$e');
     }
-  }
-
-  void _simularAvaliacao() {
-    final double precisaoSimulada = 60 + Random().nextDouble() * 40; // 60% a 100%
-    widget.onResultado(widget.poseEsperada, precisaoSimulada);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Avaliação (Simulada)')),
-      body: Column(
-        children: [
-          // Nome da pose no topo
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              widget.poseEsperada.replaceAll('_', ' '),
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+      body: imagemUrl == null
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Image.network(imagemUrl!, height: 240),
+                ),
+                const Text(
+                  "A avaliar pose simulada...",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ],
             ),
-          ),
-
-          // Imagem ou erro
-          if (imagemUrl != null)
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Image.network(
-                imagemUrl!,
-                height: 250,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  print('❌ Erro ao carregar imagem: $error');
-                  return const Text('Erro ao carregar imagem ❌');
-                },
-              ),
-            )
-          else
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: CircularProgressIndicator(),
-            ),
-
-          const Spacer(),
-
-          // Botão simulado
-          ElevatedButton.icon(
-            icon: const Icon(Icons.play_arrow),
-            label: const Text("Iniciar Avaliação"),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 60),
-              textStyle: const TextStyle(fontSize: 18),
-            ),
-            onPressed: _simularAvaliacao,
-          ),
-          const SizedBox(height: 24),
-        ],
-      ),
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yoga_pose_app/pages/feedback_final_page.dart';
+import '../resultado_pose.dart';
 import 'package:yoga_pose_app/widgets/live_pose_detector_page.dart';
+import 'slideshow_feedback_page.dart';
 import 'package:yoga_pose_app/services/pose_service.dart';
 
 class AvaliacaoNivelPage extends StatefulWidget {
@@ -15,7 +17,7 @@ class AvaliacaoNivelPage extends StatefulWidget {
 
 class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
   List<String> poses = [];
-  Map<String, double> precisoesPorPose = {};
+  List<ResultadoPose> resultados = [];
   int indexAtual = 0;
 
   @override
@@ -61,6 +63,7 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
       context,
       MaterialPageRoute(
         builder: (_) => FeedbackFinalPage(
+          resultados: resultados,
           nivel: widget.nivel,
           mediaFinal: media,
           nomesPoses: precisoesPorPose.keys.toList(),

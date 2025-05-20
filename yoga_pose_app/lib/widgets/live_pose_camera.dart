@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as img;
 import 'package:yoga_pose_app/config.dart';
+import '../resultado_pose.dart';
 
 class LivePoseDetectorCameraPage extends StatefulWidget {
   final String poseEsperada;
-  final void Function(String nomePose, double precisao) onResultado;
+  final void Function(ResultadoPose resultado) onResultado;
 
   const LivePoseDetectorCameraPage({
     Key? key,
@@ -107,36 +109,25 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
         final data = jsonDecode(resBody);
         final poseDetectada = data['pose'];
         final conf = data['precisao'].toDouble();
+        final List<String> correcoes = List<String>.from(data['correcoes']);
 
-        await _guardarTentativa(widget.poseEsperada, conf);
+        if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
+          _controller?.dispose();
 
-        if (poseDetectada == widget.poseEsperada) {
-          setState(() {
-            if (conf > _melhorConf) _melhorConf = conf;
-          });
-
-          if (conf >= 0.70) {
-            await Future.delayed(const Duration(milliseconds: 500));
-            _controller?.dispose();
-            widget.onResultado(widget.poseEsperada, conf * 100);
-          }
+          widget.onResultado(ResultadoPose(
+            nomePose: widget.poseEsperada,
+            precisao: conf,
+            correcoes: correcoes,
+            imagemBytes: Uint8List.fromList(jpeg),
+          ));
         }
+
+        setState(() {
+          if (conf > _melhorConf) _melhorConf = conf;
+        });
       }
     } catch (e) {
       print('Erro API: $e');
-    }
-  }
-
-  Future<void> _guardarTentativa(String pose, double conf) async {
-    try {
-      final uri = Uri.parse('${AppConfig.baseUrlBackend2}/guardar_tentativa');
-      await http.post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'pose': pose, 'precisao': conf}),
-      );
-    } catch (e) {
-      print('Erro a guardar tentativa: $e');
     }
   }
 
@@ -180,4 +171,3 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
     );
   }
 }
-

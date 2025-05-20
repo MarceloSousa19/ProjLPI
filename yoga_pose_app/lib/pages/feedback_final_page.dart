@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import '../resultado_pose.dart';
+import 'slideshow_feedback_page.dart';
+
 
 class FeedbackFinalPage extends StatelessWidget {
   final String nivel;
   final double mediaFinal;
-  final List<String> nomesPoses;
-  final List<double> precisoes;
+  final List<ResultadoPose> resultados;
   final bool passou;
   final VoidCallback onRepetir;
 
@@ -12,8 +14,7 @@ class FeedbackFinalPage extends StatelessWidget {
     Key? key,
     required this.nivel,
     required this.mediaFinal,
-    required this.nomesPoses,
-    required this.precisoes,
+    required this.resultados,
     required this.passou,
     required this.onRepetir,
   }) : super(key: key);
@@ -36,7 +37,20 @@ class FeedbackFinalPage extends StatelessWidget {
               passou ? '✅ Passou o nível!' : '❌ Falhou o nível',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: passou ? Colors.green : Colors.red),
             ),
+            
             const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SlideshowFeedbackPage(resultados: resultados),
+                  ),
+                );
+              },
+              child: const Text("Ver Slideshow Final"),
+            ),
+
             Text(
               'Média final: ${mediaFinal.toStringAsFixed(1)}%',
               style: const TextStyle(fontSize: 20),
@@ -44,17 +58,17 @@ class FeedbackFinalPage extends StatelessWidget {
             const SizedBox(height: 24),
             Expanded(
               child: ListView.builder(
-                itemCount: nomesPoses.length,
+                itemCount: resultados.length,
                 itemBuilder: (context, index) {
-                  final nome = nomesPoses[index];
-                  final precisao = precisoes[index];
+                  final r = resultados[index];
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      title: Text(nome),
-                      subtitle: Text('Precisão: ${precisao.toStringAsFixed(1)}%'),
-                      trailing: Text(_comentario(precisao)),
+                      title: Text(r.nomePose.replaceAll('_', ' ')),
+                      subtitle: Text('Precisão: ${r.precisao.toStringAsFixed(1)}%'),
+                      trailing: Text(_comentario(r.precisao)),
                     ),
+
                   );
                 },
               ),
