@@ -78,6 +78,47 @@ def classificacao_pessoal():
         dados = json.load(f)
 
     return jsonify(dados)
+@app.route('/progresso', methods=['GET'])
+def get_progresso():
+    caminho = os.path.join(os.path.dirname(__file__), "..", "shared_data", "progresso_utilizador.json")
+    if not os.path.exists(caminho):
+        return jsonify({
+            "nivel_maximo_desbloqueado": "Principiante",
+            "concluidos": []
+        })
+    with open(caminho, 'r', encoding='utf-8') as f:
+        return jsonify(json.load(f))
+
+
+@app.route('/atualizar_progresso', methods=['POST'])
+def atualizar_progresso():
+    data = request.get_json()
+    caminho = os.path.join(os.path.dirname(__file__), "..", "shared_data", "progresso_utilizador.json")
+
+    if os.path.exists(caminho):
+        with open(caminho, 'r', encoding='utf-8') as f:
+            progresso = json.load(f)
+    else:
+        progresso = {
+            "nivel_maximo_desbloqueado": "Principiante",
+            "concluidos": []
+        }
+
+    nivel_concluido = data.get("nivel")
+    if nivel_concluido and nivel_concluido not in progresso["concluidos"]:
+        progresso["concluidos"].append(nivel_concluido)
+
+    # desbloquear próximo nível se existir
+    ordem = ["Principiante", "Intermedio", "Avancado", "Mestre"]
+    idx_atual = ordem.index(nivel_concluido)
+    if idx_atual + 1 < len(ordem):
+        progresso["nivel_maximo_desbloqueado"] = ordem[idx_atual + 1]
+
+    with open(caminho, 'w', encoding='utf-8') as f:
+        json.dump(progresso, f, ensure_ascii=False, indent=4)
+
+    return jsonify({"status": "ok", "progresso": progresso})
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5001)

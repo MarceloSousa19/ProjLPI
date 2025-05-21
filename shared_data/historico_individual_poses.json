@@ -5,6 +5,14 @@
             {
                 "data": "2025-05-21",
                 "precisao": 86.37
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 75.46
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 93.11
             }
         ]
     },
@@ -14,6 +22,14 @@
             {
                 "data": "2025-05-21",
                 "precisao": 90.85
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 96.55
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 76.45
             }
         ]
     },
@@ -23,6 +39,14 @@
             {
                 "data": "2025-05-21",
                 "precisao": 82.42
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 76.98
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 92.35
             }
         ]
     },
@@ -32,6 +56,18 @@
             {
                 "data": "2025-05-21",
                 "precisao": 87.25
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 83.77
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 75.2
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 76.77
             }
         ]
     },
@@ -41,6 +77,10 @@
             {
                 "data": "2025-05-21",
                 "precisao": 82.81
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 72.99
             }
         ]
     },
@@ -50,6 +90,10 @@
             {
                 "data": "2025-05-21",
                 "precisao": 75.56
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 93.32
             }
         ]
     },
@@ -59,6 +103,14 @@
             {
                 "data": "2025-05-21",
                 "precisao": 88.68
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 79.21
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 96.52
             }
         ]
     },
@@ -77,6 +129,10 @@
             {
                 "data": "2025-05-21",
                 "precisao": 98.85
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 71.45
             }
         ]
     },
@@ -86,6 +142,110 @@
             {
                 "data": "2025-05-21",
                 "precisao": 70.23
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 81.9
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 82.49
+            }
+        ]
+    },
+    "Chair_Pose_or_Utkatasana_": {
+        "nome": "Chair_Pose_or_Utkatasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 90.39
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 81.3
+            }
+        ]
+    },
+    "Seated_Forward_Bend_pose_or_Paschimottanasana_": {
+        "nome": "Seated_Forward_Bend_pose_or_Paschimottanasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 99.71
+            }
+        ]
+    },
+    "Supta_Virasana_Vajrasana": {
+        "nome": "Supta_Virasana_Vajrasana",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 78.96
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 71.31
+            }
+        ]
+    },
+    "Cat_Cow_Pose_or_Marjaryasana_": {
+        "nome": "Cat_Cow_Pose_or_Marjaryasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 94.52
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 89.59
+            }
+        ]
+    },
+    "Happy_Baby_Pose_or_Ananda_Balasana_": {
+        "nome": "Happy_Baby_Pose_or_Ananda_Balasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 77.6
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 89.22
+            }
+        ]
+    },
+    "Corpse_Pose_or_Savasana_": {
+        "nome": "Corpse_Pose_or_Savasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 95.39
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 88.24
+            }
+        ]
+    },
+    "Sitting_pose_1_(normal)": {
+        "nome": "Sitting_pose_1_(normal)",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 74.15
+            },
+            {
+                "data": "2025-05-21",
+                "precisao": 84.34
+            }
+        ]
+    },
+    "Bound_Angle_Pose_or_Baddha_Konasana_": {
+        "nome": "Bound_Angle_Pose_or_Baddha_Konasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 82.54
             }
         ]
     }

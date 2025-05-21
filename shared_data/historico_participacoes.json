@@ -142,5 +142,197 @@
                 "precisao": 83
             }
         ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-05-21",
+        "resultado_nivel": "Passou",
+        "media_final": 83.97,
+        "poses": [
+            {
+                "nome": "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_",
+                "precisao": 86.37
+            },
+            {
+                "nome": "Legs-Up-the-Wall_Pose_or_Viparita_Karani_",
+                "precisao": 90.85
+            },
+            {
+                "nome": "Supta_Baddha_Konasana_",
+                "precisao": 82.42
+            },
+            {
+                "nome": "Gate_Pose_or_Parighasana_",
+                "precisao": 87.25
+            },
+            {
+                "nome": "Virasana_or_Vajrasana",
+                "precisao": 82.81
+            },
+            {
+                "nome": "Wind_Relieving_pose_or_Pawanmuktasana",
+                "precisao": 75.56
+            },
+            {
+                "nome": "Fish_Pose_or_Matsyasana_",
+                "precisao": 88.68
+            },
+            {
+                "nome": "Child_Pose_or_Balasana_",
+                "precisao": 76.74
+            },
+            {
+                "nome": "Bridge_Pose_or_Setu_Bandha_Sarvangasana_",
+                "precisao": 98.85
+            },
+            {
+                "nome": "Staff_Pose_or_Dandasana_",
+                "precisao": 70.23
+            }
+        ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-05-21",
+        "resultado_nivel": "Passou",
+        "media_final": 86.95,
+        "poses": [
+            {
+                "nome": "Chair_Pose_or_Utkatasana_",
+                "precisao": 90.39
+            },
+            {
+                "nome": "Seated_Forward_Bend_pose_or_Paschimottanasana_",
+                "precisao": 99.71
+            },
+            {
+                "nome": "Supta_Virasana_Vajrasana",
+                "precisao": 78.96
+            },
+            {
+                "nome": "Gate_Pose_or_Parighasana_",
+                "precisao": 83.77
+            },
+            {
+                "nome": "Cat_Cow_Pose_or_Marjaryasana_",
+                "precisao": 94.52
+            },
+            {
+                "nome": "Happy_Baby_Pose_or_Ananda_Balasana_",
+                "precisao": 77.6
+            },
+            {
+                "nome": "Wind_Relieving_pose_or_Pawanmuktasana",
+                "precisao": 93.32
+            },
+            {
+                "nome": "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_",
+                "precisao": 75.46
+            },
+            {
+                "nome": "Fish_Pose_or_Matsyasana_",
+                "precisao": 79.21
+            },
+            {
+                "nome": "Legs-Up-the-Wall_Pose_or_Viparita_Karani_",
+                "precisao": 96.55
+            }
+        ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-05-21",
+        "resultado_nivel": "Passou",
+        "media_final": 82.69,
+        "poses": [
+            {
+                "nome": "Fish_Pose_or_Matsyasana_",
+                "precisao": 96.52
+            },
+            {
+                "nome": "Virasana_or_Vajrasana",
+                "precisao": 72.99
+            },
+            {
+                "nome": "Happy_Baby_Pose_or_Ananda_Balasana_",
+                "precisao": 89.22
+            },
+            {
+                "nome": "Supta_Baddha_Konasana_",
+                "precisao": 76.98
+            },
+            {
+                "nome": "Corpse_Pose_or_Savasana_",
+                "precisao": 95.39
+            },
+            {
+                "nome": "Gate_Pose_or_Parighasana_",
+                "precisao": 75.2
+            },
+            {
+                "nome": "Bridge_Pose_or_Setu_Bandha_Sarvangasana_",
+                "precisao": 71.45
+            },
+            {
+                "nome": "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_",
+                "precisao": 93.11
+            },
+            {
+                "nome": "Staff_Pose_or_Dandasana_",
+                "precisao": 81.9
+            },
+            {
+                "nome": "Sitting_pose_1_(normal)",
+                "precisao": 74.15
+            }
+        ]
+    },
+    {
+        "nivel": "Principiante",
+        "data": "2025-05-21",
+        "resultado_nivel": "Passou",
+        "media_final": 82.54,
+        "poses": [
+            {
+                "nome": "Bound_Angle_Pose_or_Baddha_Konasana_",
+                "precisao": 82.54
+            },
+            {
+                "nome": "Legs-Up-the-Wall_Pose_or_Viparita_Karani_",
+                "precisao": 76.45
+            },
+            {
+                "nome": "Supta_Baddha_Konasana_",
+                "precisao": 92.35
+            },
+            {
+                "nome": "Supta_Virasana_Vajrasana",
+                "precisao": 71.31
+            },
+            {
+                "nome": "Cat_Cow_Pose_or_Marjaryasana_",
+                "precisao": 89.59
+            },
+            {
+                "nome": "Staff_Pose_or_Dandasana_",
+                "precisao": 82.49
+            },
+            {
+                "nome": "Gate_Pose_or_Parighasana_",
+                "precisao": 76.77
+            },
+            {
+                "nome": "Sitting_pose_1_(normal)",
+                "precisao": 84.34
+            },
+            {
+                "nome": "Chair_Pose_or_Utkatasana_",
+                "precisao": 81.3
+            },
+            {
+                "nome": "Corpse_Pose_or_Savasana_",
+                "precisao": 88.24
+            }
+        ]
     }
 ]

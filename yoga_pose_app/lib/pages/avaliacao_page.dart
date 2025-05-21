@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:yoga_pose_app/config.dart';
 import 'avaliacao_nivel_page.dart';
-/* import 'avaliacao_principiante.dart';
-import 'avaliacao_intermedio.dart';
-import 'avaliacao_avancado.dart';
-import 'avaliacao_mestre.dart';
-*/
+
 class AvaliacaoPage extends StatefulWidget {
   const AvaliacaoPage({super.key});
 
@@ -14,35 +13,42 @@ class AvaliacaoPage extends StatefulWidget {
 
 class _AvaliacaoPageState extends State<AvaliacaoPage> {
   String nivelAtual = 'Principiante';
-  bool desbloqueadoIntermedio = false;
-  bool desbloqueadoAvancado = false;
-  bool desbloqueadoMestre = false;
+  List<String> desbloqueados = ['Principiante'];
 
-  /* void _navegarParaNivel(String nivel) {
-    Widget page;
-    switch (nivel) {
-      case 'Principiante':
-        page = const AvaliacaoPrincipiantePage();
-        break;
-      case 'Intermédio':
-        page = const AvaliacaoIntermedioPage();
-        break;
-      case 'Avançado':
-        page = const AvaliacaoAvancadoPage();
-        break;
-      case 'Mestre':
-        page = const AvaliacaoMestrePage();
-        break;
-      default:
-        return;
-    }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => page),
-    );
+  @override
+  void initState() {
+    super.initState();
+    carregarProgresso();
   }
-*/
+
+  Future<void> carregarProgresso() async {
+    try {
+      final res = await http.get(Uri.parse('${AppConfig.baseUrlBackend1}/progresso'));
+      if (res.statusCode == 200) {
+        final data = jsonDecode(res.body);
+        final raw = data['nivel_maximo_desbloqueado'] ?? 'Principiante';
+        final mapaNomes = {
+          'Principiante': 'Principiante',
+          'Intermedio': 'Intermédio',
+          'Avancado': 'Avançado',
+          'Mestre': 'Mestre',
+        };
+        final convertido = mapaNomes[raw] ?? raw;
+        setState(() {
+          nivelAtual = convertido;
+          desbloqueados = _calcularDesbloqueados(convertido);
+        });
+      }
+    } catch (e) {
+      print('Erro ao carregar progresso: $e');
+    }
+  }
+
+  List<String> _calcularDesbloqueados(String nivelAtual) {
+    const ordem = ['Principiante', 'Intermédio', 'Avançado', 'Mestre'];
+    final index = ordem.indexOf(nivelAtual);
+    return ordem.sublist(0, index + 1);
+  }
 
   void _navegarParaNivel(String nivel) {
     Navigator.push(
@@ -50,6 +56,24 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
       MaterialPageRoute(
         builder: (_) => AvaliacaoNivelPage(nivel: nivel),
       ),
+    );
+  }
+
+  Widget _buildBotaoNivel(String nome, bool ativo) {
+    return ElevatedButton.icon(
+      icon: ativo ? const Icon(Icons.fitness_center) : const Icon(Icons.lock_outline),
+      onPressed: ativo ? () {
+        setState(() {
+          nivelAtual = nome;
+        });
+        _navegarParaNivel(nome);
+      } : null,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ativo ? Colors.blue : Colors.grey,
+        foregroundColor: Colors.white,
+        minimumSize: const Size(double.infinity, 50),
+      ),
+      label: Text(nome),
     );
   }
 
@@ -67,36 +91,17 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
               style: TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 24),
-            _buildBotaoNivel('Principiante', true),
+            _buildBotaoNivel('Principiante', desbloqueados.contains('Principiante')),
             const SizedBox(height: 12),
-            _buildBotaoNivel('Intermédio', desbloqueadoIntermedio),
+            _buildBotaoNivel('Intermédio', desbloqueados.contains('Intermédio')),
             const SizedBox(height: 12),
-            _buildBotaoNivel('Avançado', desbloqueadoAvancado),
+            _buildBotaoNivel('Avançado', desbloqueados.contains('Avançado')),
             const SizedBox(height: 12),
-            if (desbloqueadoMestre) _buildBotaoNivel('Mestre', true),
+            if (desbloqueados.contains('Mestre'))
+              _buildBotaoNivel('Mestre', true),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildBotaoNivel(String nome, bool ativo) {
-    return ElevatedButton.icon(
-      icon: ativo
-          ? const Icon(Icons.fitness_center)
-          : const Icon(Icons.lock_outline),
-      onPressed: ativo ? () {
-        setState(() {
-          nivelAtual = nome;
-        });
-        _navegarParaNivel(nome);
-      } : null,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ativo ? Colors.blue : Colors.grey,
-        foregroundColor: Colors.white,
-        minimumSize: const Size(double.infinity, 50),
-      ),
-      label: Text(nome),
     );
   }
 }

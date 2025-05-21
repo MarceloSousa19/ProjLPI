@@ -4,10 +4,12 @@ import 'package:yoga_pose_app/pages/feedback_final_page.dart';
 import '../resultado_pose.dart';
 import 'package:yoga_pose_app/widgets/live_pose_detector_page.dart';
 import 'package:yoga_pose_app/services/pose_service.dart';
+import 'package:http/http.dart' as http;
 import '../config.dart';
+import 'dart:convert';
+
 class AvaliacaoNivelPage extends StatefulWidget {
   final String nivel;
-
 
   const AvaliacaoNivelPage({Key? key, required this.nivel}) : super(key: key);
 
@@ -30,8 +32,16 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
 
   Future<void> carregarPosesDoNivel() async {
     try {
-      final todas = await PoseService().getPosesPorNivel(
-          widget.nivel.toLowerCase());
+      final mapaBackend = {
+        'Intermédio': 'intermedio',
+        'Avançado': 'avancado',
+        'Mestre': 'mestre',
+        'Principiante': 'principiante',
+      };
+      final nivelApi = mapaBackend[widget.nivel] ?? widget.nivel.toLowerCase();
+
+      final todas = await PoseService().getPosesPorNivel(nivelApi);
+
       todas.shuffle(Random());
 
       final limite = widget.nivel.toLowerCase() == 'mestre' ? 5 : 10;
@@ -61,12 +71,11 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
   }
 
   Future<void> _irParaFeedbackFinal() async {
-    final media = precisoesPorPose.values.fold(0.0, (a, b) => a + b) /
-        precisoesPorPose.length;
+    final media = precisoesPorPose.values.fold(0.0, (a, b) => a + b) / precisoesPorPose.length;
     final passou = media >= 70.0;
 
-    PoseService().guardarHistoricoIndividual(resultados);
-    PoseService().guardarHistoricoParticipacao(
+    await PoseService().guardarHistoricoIndividual(resultados);
+    await PoseService().guardarHistoricoParticipacao(
       widget.nivel,
       precisoesPorPose.values.toList(),
       precisoesPorPose.keys.toList(),
@@ -74,25 +83,32 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
       media,
     );
 
+    if (passou) {
+      await http.post(
+        Uri.parse('${AppConfig.baseUrlBackend1}/atualizar_progresso'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'nivel': widget.nivel}),
+      );
+    }
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (_) =>
-            FeedbackFinalPage(
-              resultados: resultados,
-              nivel: widget.nivel,
-              mediaFinal: media,
-              nomesPoses: precisoesPorPose.keys.toList(),
-              precisoes: precisoesPorPose.values.toList(),
-              passou: passou,
-              onRepetir: () {
-                setState(() {
-                  precisoesPorPose.clear();
-                  indexAtual = 0;
-                  carregarPosesDoNivel();
-                });
-              },
-            ),
+        builder: (_) => FeedbackFinalPage(
+          resultados: resultados,
+          nivel: widget.nivel,
+          mediaFinal: media,
+          nomesPoses: precisoesPorPose.keys.toList(),
+          precisoes: precisoesPorPose.values.toList(),
+          passou: passou,
+          onRepetir: () {
+            setState(() {
+              precisoesPorPose.clear();
+              indexAtual = 0;
+              carregarPosesDoNivel();
+            });
+          },
+        ),
       ),
     );
   }
@@ -137,14 +153,12 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
                   final data = snapshot.data!;
                   final pasta = data['pasta'];
                   final ficheiro = data['ficheiro'];
-                  final imagemUrl = '${AppConfig
-                      .baseUrlBackend1}/images_test/$pasta/$ficheiro';
+                  final imagemUrl = '${AppConfig.baseUrlBackend1}/images_test/$pasta/$ficheiro';
 
                   return Image.network(
                     imagemUrl,
                     height: 250,
-                    errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.image_not_supported),
+                    errorBuilder: (context, error, stackTrace) => const Icon(Icons.image_not_supported),
                   );
                 }
               },
