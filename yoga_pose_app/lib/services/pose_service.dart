@@ -25,5 +25,15 @@ class PoseService {
       throw Exception('Erro ao carregar poses do backend');
     }
   }
+  Future<Map<String, dynamic>> obterImagemDaPose(String nomePose) async {
+    final res = await http.get(Uri.parse('${AppConfig.baseUrlBackend1}/imagem_pose/$nomePose'));
+
+
+    if (res.statusCode == 200) {
+      return jsonDecode(res.body);
+    } else {
+      throw Exception('Falha ao obter imagem da pose');
+    }
+  }
 
 }

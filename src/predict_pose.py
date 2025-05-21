@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from joblib import load
-from src.historico_individual import guardar_historico_individual
-from src.feedback_pose import gerar_correcoes
+from historico_individual import guardar_historico_individual
+from feedback_pose import gerar_correcoes
 
 LANDMARK_INDEXES = {
     'R_SHOULDER': 12, 'R_ELBOW': 14, 'R_WRIST': 16,

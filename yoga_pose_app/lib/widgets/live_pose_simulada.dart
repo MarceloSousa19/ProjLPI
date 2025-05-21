@@ -48,7 +48,7 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
         final pasta = data['pasta'];
         final ficheiro = data['ficheiro'];
 
-        final imagemFinalUrl = '${AppConfig.baseUrlBackend1}/images/$pasta/$ficheiro';
+        final imagemFinalUrl = '${AppConfig.baseUrlBackend1}/images_test/$pasta/$ficheiro';
         final imagemRes = await http.get(Uri.parse(imagemFinalUrl));
         final imagemBytes = imagemRes.bodyBytes;
 

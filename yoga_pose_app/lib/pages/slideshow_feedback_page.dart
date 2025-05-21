@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import '../resultado_pose.dart';
 
-class SlideshowFeedbackPage extends StatelessWidget {
+class SlideshowFeedbackPage extends StatefulWidget {
   final List<ResultadoPose> resultados;
   final String nivel;
   final double mediaFinal;
@@ -19,61 +18,102 @@ class SlideshowFeedbackPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<SlideshowFeedbackPage> createState() => _SlideshowFeedbackPageState();
+}
+
+class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
+  late PageController _pageController;
+  int _paginaAtual = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  void _avancar() {
+    if (_paginaAtual + 1 < widget.resultados.length) {
+      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    }
+  }
+
+  void _voltar() {
+    if (_paginaAtual > 0) {
+      _pageController.previousPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final total = widget.resultados.length;
+
     return Scaffold(
-      appBar: AppBar(title: Text('Feedback Final - Nível $nivel')),
+      appBar: AppBar(
+        title: Text('Feedback Visual - Nível ${widget.nivel}'),
+      ),
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
-              itemCount: resultados.length,
+              controller: _pageController,
+              itemCount: total,
+              onPageChanged: (index) {
+                setState(() {
+                  _paginaAtual = index;
+                });
+              },
               itemBuilder: (context, index) {
-                final resultado = resultados[index];
+                final resultado = widget.resultados[index];
                 return Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text(
+                        '${index + 1} de $total',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 8),
                       Text(
                         resultado.nomePose,
                         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
                       ),
+                      const SizedBox(height: 16),
+                      resultado.imagem != null
+                          ? Image.memory(resultado.imagem!, height: 250)
+                          : const Icon(Icons.image_not_supported, size: 100),
+                      const SizedBox(height: 16),
+                      Text('Precisão: ${resultado.precisao.toStringAsFixed(1)}%'),
                       const SizedBox(height: 12),
-                      Expanded(
-                        child: Image.memory(
-                          resultado.imagem,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'Precisão: ${resultado.precisao.toStringAsFixed(1)}%',
-                        style: const TextStyle(fontSize: 18),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text('Correções:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      ...resultado.correcoes.map((c) => Text('- $c')).toList(),
+                      if (resultado.correcoes.isNotEmpty) ...[
+                        const Text('Sugestões de Correção:', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8),
+                        ...resultado.correcoes.map((c) => Text('- $c')).toList(),
+                      ],
                     ],
                   ),
                 );
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              children: [
-                Text('Média final: ${mediaFinal.toStringAsFixed(1)}%', style: const TextStyle(fontSize: 18)),
-                Text(passou ? '✅ Passaste o nível!' : '❌ Não passaste o nível', style: const TextStyle(fontSize: 18)),
-                const SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: onRepetir,
-                  child: const Text('Repetir nível'),
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: _voltar,
+                child: const Text('Anterior'),
+              ),
+              ElevatedButton(
+                onPressed: _avancar,
+                child: const Text('Seguinte'),
+              ),
+            ],
           ),
+          const SizedBox(height: 16),
         ],
       ),
     );
   }
 }
+
