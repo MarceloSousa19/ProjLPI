@@ -4,7 +4,6 @@ import os
 from datetime import datetime
 from predict_pose import classificar_pose
 
-
 # Diretórios
 UPLOAD_FOLDER = 'uploads'
 IMAGE_FOLDER = 'images_test'
@@ -38,10 +37,12 @@ def classificar_pose_api():
     return jsonify(resultado)
 
 # NOVO: Servir imagens das poses
-@app.route('/images_test/<pose>/<image>')
+@app.route('/images/<pose>/<image>')
 def serve_pose_image(pose, image):
     folder = os.path.join(IMAGE_FOLDER, pose)
     return send_from_directory(folder, image)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002, host="0.0.0.0")

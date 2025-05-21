@@ -60,10 +60,19 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
     }
   }
 
-  void _irParaFeedbackFinal() {
+  Future<void> _irParaFeedbackFinal() async {
     final media = precisoesPorPose.values.fold(0.0, (a, b) => a + b) /
         precisoesPorPose.length;
     final passou = media >= 70.0;
+
+    PoseService().guardarHistoricoIndividual(resultados);
+    PoseService().guardarHistoricoParticipacao(
+      widget.nivel,
+      precisoesPorPose.values.toList(),
+      precisoesPorPose.keys.toList(),
+      passou,
+      media,
+    );
 
     Navigator.pushReplacement(
       context,

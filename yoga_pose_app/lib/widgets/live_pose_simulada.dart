@@ -78,20 +78,26 @@ class _LivePoseDetectorSimuladaPageState extends State<LivePoseDetectorSimuladaP
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: imagemUrl == null
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Image.network(imagemUrl!, height: 240),
+      body: SafeArea(
+        child: imagemUrl == null
+            ? const Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image.network(imagemUrl!, height: 240),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "A avaliar pose simulada...",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 32),
+            ],
           ),
-          const Text(
-            "A avaliar pose simulada...",
-            style: TextStyle(fontSize: 18),
-          ),
-        ],
+        ),
       ),
     );
-  }
-}
+  }}

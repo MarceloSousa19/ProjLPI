@@ -100,16 +100,19 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
-                onPressed: _voltar,
-                child: const Text('Anterior'),
-              ),
-              ElevatedButton(
-                onPressed: _avancar,
-                child: const Text('Seguinte'),
-              ),
+              if (_paginaAtual > 0)
+                ElevatedButton(
+                  onPressed: _voltar,
+                  child: const Text('Anterior'),
+                ),
+              if (_paginaAtual < total - 1)
+                ElevatedButton(
+                  onPressed: _avancar,
+                  child: const Text('Seguinte'),
+                ),
             ],
           ),
+
           const SizedBox(height: 16),
         ],
       ),

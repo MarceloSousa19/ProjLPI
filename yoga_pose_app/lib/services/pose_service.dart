@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../config.dart';
+import 'package:yoga_pose_app/resultado_pose.dart';
 
 class PoseService {
   Future<List<String>> getPosesPorNivel(String nivel) async {
@@ -35,5 +36,39 @@ class PoseService {
       throw Exception('Falha ao obter imagem da pose');
     }
   }
+
+  Future<void> guardarHistoricoIndividual(List<ResultadoPose> resultados) async {
+    for (var resultado in resultados) {
+      await http.post(
+        Uri.parse('${AppConfig.baseUrlBackend1}/guardar_historico_individual'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'nome_pose': resultado.nomePose,
+          'precisao': resultado.precisao,
+        }),
+      );
+    }
+  }
+
+  Future<void> guardarHistoricoParticipacao(
+      String nivel,
+      List<double> precisoes,
+      List<String> nomes,
+      bool passou,
+      double media,
+      ) async {
+    await http.post(
+      Uri.parse('${AppConfig.baseUrlBackend1}/guardar_historico_participacao'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'nivel': nivel,
+        'precisoes_poses': precisoes,
+        'nomes_poses': nomes,
+        'passou': passou,
+        'media_final': media,
+      }),
+    );
+  }
+
 
 }
