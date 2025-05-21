@@ -4,14 +4,14 @@ import json
 import os
 from datetime import datetime
 
-def guardar_historico_individual(nome_pose, precisao, caminho_ficheiro="historico_individual_poses.json"):
+def guardar_historico_individual(nome_pose, precisao, caminho_ficheiro="../shared_data/historico_individual_poses.json"):
     """
     Guarda a precisão individual de uma pose num histórico geral.
 
     Args:
         nome_pose (str): Nome da pose.
         precisao (float): Precisão obtida.
-        caminho_ficheiro (str, optional): Nome do ficheiro JSON onde guardar. Default é 'historico_individual_poses.json'.
+        caminho_ficheiro (str, optional): Nome do ficheiro JSON onde guardar. ="../shared_data/historico_individual_poses.json"
     """
 
     # Carregar histórico atual (se existir)

@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 import json
 import os
+from historico_individual import guardar_historico_individual
+from gerar_historico import gerar_historico_participacao, guardar_historico_json
 
 
 app = Flask(__name__)
@@ -44,6 +46,38 @@ def imagem_pose(pose):
         "pasta": pose,
         "ficheiro": imagens_validas[0]
     })
+
+
+@app.route('/guardar_historico_individual', methods=['POST'])
+def api_guardar_individual():
+    data = request.get_json()
+    guardar_historico_individual(data['nome_pose'], data['precisao'])
+    return jsonify({'status': 'ok'})
+
+@app.route('/guardar_historico_participacao', methods=['POST'])
+def api_guardar_participacao():
+    data = request.get_json()
+    historico = gerar_historico_participacao(
+        data['nivel'],
+        data['precisoes_poses'],
+        data['nomes_poses'],
+        data['passou'],
+        data['media_final']
+    )
+    guardar_historico_json(historico)
+    return jsonify({'status': 'ok'})
+
+@app.route('/classificacao_pessoal', methods=['GET'])
+def classificacao_pessoal():
+    caminho_ficheiro = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "shared_data", "historico_individual_poses.json"))
+
+    if not os.path.exists(caminho_ficheiro):
+        return jsonify({})  # ou [] se preferires uma lista
+
+    with open(caminho_ficheiro, 'r', encoding='utf-8') as f:
+        dados = json.load(f)
+
+    return jsonify(dados)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5001)

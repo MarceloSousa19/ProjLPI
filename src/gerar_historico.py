@@ -36,14 +36,18 @@ def gerar_historico_participacao(nivel, precisoes_poses, nomes_poses, passou, me
 
     return historico
 
-def guardar_historico_json(historico, caminho_ficheiro="historico_participacoes.json"):
+def guardar_historico_json(historico, caminho_ficheiro=None):
     """
     Guarda um histórico de participação num ficheiro JSON.
 
     Args:
         historico (dict): Dicionário do histórico da participação.
-        caminho_ficheiro (str, optional): Caminho do ficheiro JSON. Default é 'historico_participacoes.json'.
+        caminho_ficheiro (str, optional): Caminho do ficheiro JSON. Default é 'shared_data/historico_participacoes.json'.
     """
+
+    if caminho_ficheiro is None:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        caminho_ficheiro = os.path.join(base_dir, '..', 'shared_data', 'historico_participacoes.json')
 
     # Se já existe, carregar o conteúdo anterior
     if os.path.exists(caminho_ficheiro):

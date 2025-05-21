@@ -1,23 +1,91 @@
 {
-    "Adho_Mukha_Svanasana": {
-        "nome": "Adho_Mukha_Svanasana",
+    "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_": {
+        "nome": "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_",
         "tentativas": [
             {
-                "data": "2025-04-29",
-                "precisao": 85.0
-            },
-            {
-                "data": "2025-04-29",
-                "precisao": 62.5
+                "data": "2025-05-21",
+                "precisao": 86.37
             }
         ]
     },
-    "Virabhadrasana_One": {
-        "nome": "Virabhadrasana_One",
+    "Legs-Up-the-Wall_Pose_or_Viparita_Karani_": {
+        "nome": "Legs-Up-the-Wall_Pose_or_Viparita_Karani_",
         "tentativas": [
             {
-                "data": "2025-04-29",
-                "precisao": 78.5
+                "data": "2025-05-21",
+                "precisao": 90.85
+            }
+        ]
+    },
+    "Supta_Baddha_Konasana_": {
+        "nome": "Supta_Baddha_Konasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 82.42
+            }
+        ]
+    },
+    "Gate_Pose_or_Parighasana_": {
+        "nome": "Gate_Pose_or_Parighasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 87.25
+            }
+        ]
+    },
+    "Virasana_or_Vajrasana": {
+        "nome": "Virasana_or_Vajrasana",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 82.81
+            }
+        ]
+    },
+    "Wind_Relieving_pose_or_Pawanmuktasana": {
+        "nome": "Wind_Relieving_pose_or_Pawanmuktasana",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 75.56
+            }
+        ]
+    },
+    "Fish_Pose_or_Matsyasana_": {
+        "nome": "Fish_Pose_or_Matsyasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 88.68
+            }
+        ]
+    },
+    "Child_Pose_or_Balasana_": {
+        "nome": "Child_Pose_or_Balasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 76.74
+            }
+        ]
+    },
+    "Bridge_Pose_or_Setu_Bandha_Sarvangasana_": {
+        "nome": "Bridge_Pose_or_Setu_Bandha_Sarvangasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 98.85
+            }
+        ]
+    },
+    "Staff_Pose_or_Dandasana_": {
+        "nome": "Staff_Pose_or_Dandasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-21",
+                "precisao": 70.23
             }
         ]
     }
