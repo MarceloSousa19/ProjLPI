@@ -23,7 +23,8 @@ def gerar_historico_participacao(nivel, precisoes_poses, nomes_poses, passou, me
     for nome, precisao in zip(nomes_poses, precisoes_poses):
         poses_info.append({
             "nome": nome,
-            "precisao": round(precisao, 2)
+        "precisao": round(precisao, 2),
+        "sucesso": precisao >= 70
         })
 
     historico = {
