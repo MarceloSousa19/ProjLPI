@@ -26,7 +26,7 @@ class _PerfilPageState extends State<PerfilPage> {
   }
 
   void carregarImagemPerfil() async {
-    final file = File('shared_data/foto_perfil.png');
+    final file = File('../shared_data/foto_perfil.png');
     if (await file.exists()) {
       setState(() {
         imagemPerfil = file;

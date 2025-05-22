@@ -110,7 +110,7 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
         final poseDetectada = data['pose'];
         final conf = data['precisao'].toDouble();
         final List<String> correcoes = List<String>.from(data['correcoes']);
-
+/*
         if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
 
         final imagemCapturada = Uint8List.fromList(jpeg);
@@ -124,6 +124,25 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
   _controller?.dispose();
   Navigator.pop(context);
 }
+*/
+        final imagemCapturada = Uint8List.fromList(jpeg);
+        final resultado = ResultadoPose(
+          nomePose: widget.poseEsperada,
+          precisao: conf,
+          imagem: imagemCapturada,
+          correcoes: correcoes,
+        );
+
+// Enviar sempre para o histórico
+        widget.onResultado(resultado);
+
+// Se passou, fecha e continua o fluxo
+        if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
+          _controller?.dispose();
+          Navigator.pop(context);
+        }
+
+
 
         setState(() {
           if (conf > _melhorConf) _melhorConf = conf;

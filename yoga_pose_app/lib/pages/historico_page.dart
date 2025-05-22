@@ -35,7 +35,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Histórico de Participações')),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
+      body: FutureBuilder<List<Map<String, dynamic>>> (
         future: _historico,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -85,10 +85,13 @@ class _HistoricoPageState extends State<HistoricoPage> {
             ),
             const SizedBox(height: 12),
             ...poses.map((p) => ListTile(
-                  leading: const Icon(Icons.self_improvement),
-                  title: Text(p['nome']),
-                  trailing: Text("${p['precisao']}%"),
-                ))
+              leading: Icon(
+                p['sucesso'] == true ? Icons.check_circle : Icons.cancel,
+                color: p['sucesso'] == true ? Colors.green : Colors.red,
+              ),
+              title: Text(p['nome']),
+              trailing: Text("${p['precisao']}%"),
+            ))
           ],
         ),
       ),

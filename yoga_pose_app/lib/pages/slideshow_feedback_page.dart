@@ -9,13 +9,13 @@ class SlideshowFeedbackPage extends StatefulWidget {
   final VoidCallback onRepetir;
 
   const SlideshowFeedbackPage({
-    Key? key,
+    super.key,
     required this.resultados,
     required this.nivel,
     required this.mediaFinal,
     required this.passou,
     required this.onRepetir,
-  }) : super(key: key);
+  });
 
   @override
   State<SlideshowFeedbackPage> createState() => _SlideshowFeedbackPageState();
@@ -64,32 +64,38 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
               },
               itemBuilder: (context, index) {
                 final resultado = widget.resultados[index];
+                final sucesso = resultado.precisao >= 70;
+
                 return Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        '${index + 1} de $total',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        resultado.nomePose,
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            sucesso ? Icons.check_circle : Icons.cancel,
+                            color: sucesso ? Colors.green : Colors.red,
+                            size: 28,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            resultado.nomePose.replaceAll('_', ' '),
+                            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 16),
-                      resultado.imagem != null
-                          ? Image.memory(resultado.imagem!, height: 250)
-                          : const Icon(Icons.image_not_supported, size: 100),
+                      Image.memory(resultado.imagem, height: 250),
                       const SizedBox(height: 16),
                       Text('Precisão: ${resultado.precisao.toStringAsFixed(1)}%'),
                       const SizedBox(height: 12),
                       if (resultado.correcoes.isNotEmpty) ...[
                         const Text('Sugestões de Correção:', style: TextStyle(fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8),
-                        ...resultado.correcoes.map((c) => Text('- $c')).toList(),
+                        ...resultado.correcoes.map((c) => Text('- $c')),
                       ],
                     ],
                   ),
@@ -112,11 +118,9 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
                 ),
             ],
           ),
-
           const SizedBox(height: 16),
         ],
       ),
     );
   }
 }
-
