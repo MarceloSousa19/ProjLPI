@@ -14,8 +14,11 @@ LANDMARK_INDEXES = {
     'NOSE': 0
 }
 
-modelo = load("ProjLPI/shared_data/mlp_pose_classifier.joblib")
-label_encoder = load("ProjLPI/shared_data/label_encoder.joblib")
+import os
+path_modelo = os.path.join(os.path.dirname(__file__), "..", "shared_data", "mlp_pose_classifier.joblib")
+modelo = load(path_modelo)
+
+label_encoder = load("../shared_data/label_encoder.joblib")
 
 def calcular_angulo(a, b, c):
     ba = a - b

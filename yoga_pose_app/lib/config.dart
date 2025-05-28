@@ -6,21 +6,21 @@ class AppConfig {
   static const int portaBackend2 = 5002;
 
   static String get baseIp {
-    if (kIsWeb) return '192.168.1.77';
+    if (kIsWeb) return '172.20.10.2';
 
     if (Platform.isAndroid) {
       // emulador Android
       bool isProbablyEmulator = !Platform.environment.containsKey('ANDROID_STORAGE');
-      return isProbablyEmulator ? '10.0.2.2' : '192.168.1.77';
+      return isProbablyEmulator ? '10.0.2.2' : '172.20.10.2';
     }
 
     if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
       // Flutter desktop (como no teu caso)
-      return '192.168.1.77';
+      return '172.20.10.2';
     }
 
     // fallback seguro
-    return '192.168.1.77';
+    return '172.20.10.2';
   }
 
   static String get baseUrlBackend1 => 'http://$baseIp:$portaBackend1';

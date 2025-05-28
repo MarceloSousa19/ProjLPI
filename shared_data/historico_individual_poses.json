@@ -211,6 +211,14 @@
             {
                 "data": "2025-05-21",
                 "precisao": 89.22
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 88.55
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 93.01
             }
         ]
     },
@@ -246,6 +254,143 @@
             {
                 "data": "2025-05-21",
                 "precisao": 82.54
+            }
+        ]
+    },
+    "Upward_Plank_Pose_or_Purvottanasana_": {
+        "nome": "Upward_Plank_Pose_or_Purvottanasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 91.03
+            }
+        ]
+    },
+    "Rajakapotasana": {
+        "nome": "Rajakapotasana",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 98.06
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 99.54
+            }
+        ]
+    },
+    "Camel_Pose_or_Ustrasana_": {
+        "nome": "Camel_Pose_or_Ustrasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 85.65
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 95.08
+            }
+        ]
+    },
+    "Intense_Side_Stretch_Pose_or_Parsvottanasana_": {
+        "nome": "Intense_Side_Stretch_Pose_or_Parsvottanasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 94.2
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 76.83
+            }
+        ]
+    },
+    "Warrior_II_Pose_or_Virabhadrasana_II_": {
+        "nome": "Warrior_II_Pose_or_Virabhadrasana_II_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 91.1
+            }
+        ]
+    },
+    "Cobra_Pose_or_Bhujangasana_": {
+        "nome": "Cobra_Pose_or_Bhujangasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 85.49
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 78.63
+            }
+        ]
+    },
+    "Dolphin_Pose_or_Ardha_Pincha_Mayurasana_": {
+        "nome": "Dolphin_Pose_or_Ardha_Pincha_Mayurasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 83.99
+            }
+        ]
+    },
+    "Half_Lord_of_the_Fishes_Pose_or_Ardha_Matsyendrasana_": {
+        "nome": "Half_Lord_of_the_Fishes_Pose_or_Ardha_Matsyendrasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 77.06
+            }
+        ]
+    },
+    "Extended_Revolved_Side_Angle_Pose_or_Utthita_Parsvakonasana_": {
+        "nome": "Extended_Revolved_Side_Angle_Pose_or_Utthita_Parsvakonasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 82.37
+            },
+            {
+                "data": "2025-05-22",
+                "precisao": 80.23
+            }
+        ]
+    },
+    "Reclining_Hand-to-Big-Toe_Pose_or_Supta_Padangusthasana_": {
+        "nome": "Reclining_Hand-to-Big-Toe_Pose_or_Supta_Padangusthasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 94.45
+            }
+        ]
+    },
+    "Bharadvaja's_Twist_pose_or_Bharadvajasana_I_": {
+        "nome": "Bharadvaja's_Twist_pose_or_Bharadvajasana_I_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 94.24
+            }
+        ]
+    },
+    "Extended_Puppy_Pose_or_Uttana_Shishosana_": {
+        "nome": "Extended_Puppy_Pose_or_Uttana_Shishosana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 86.46
+            }
+        ]
+    },
+    "Upward_Facing_Two-Foot_Staff_Pose_or_Dwi_Pada_Viparita_Dandasana_": {
+        "nome": "Upward_Facing_Two-Foot_Staff_Pose_or_Dwi_Pada_Viparita_Dandasana_",
+        "tentativas": [
+            {
+                "data": "2025-05-22",
+                "precisao": 90.73
             }
         ]
     }

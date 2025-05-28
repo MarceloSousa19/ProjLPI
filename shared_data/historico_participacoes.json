@@ -334,5 +334,121 @@
                 "precisao": 88.24
             }
         ]
+    },
+    {
+        "nivel": "Intermédio",
+        "data": "2025-05-22",
+        "resultado_nivel": "Passou",
+        "media_final": 87.75,
+        "poses": [
+            {
+                "nome": "Upward_Plank_Pose_or_Purvottanasana_",
+                "precisao": 91.03,
+                "sucesso": true
+            },
+            {
+                "nome": "Rajakapotasana",
+                "precisao": 98.06,
+                "sucesso": true
+            },
+            {
+                "nome": "Camel_Pose_or_Ustrasana_",
+                "precisao": 85.65,
+                "sucesso": true
+            },
+            {
+                "nome": "Intense_Side_Stretch_Pose_or_Parsvottanasana_",
+                "precisao": 94.2,
+                "sucesso": true
+            },
+            {
+                "nome": "Warrior_II_Pose_or_Virabhadrasana_II_",
+                "precisao": 91.1,
+                "sucesso": true
+            },
+            {
+                "nome": "Cobra_Pose_or_Bhujangasana_",
+                "precisao": 85.49,
+                "sucesso": true
+            },
+            {
+                "nome": "Dolphin_Pose_or_Ardha_Pincha_Mayurasana_",
+                "precisao": 83.99,
+                "sucesso": true
+            },
+            {
+                "nome": "Half_Lord_of_the_Fishes_Pose_or_Ardha_Matsyendrasana_",
+                "precisao": 77.06,
+                "sucesso": true
+            },
+            {
+                "nome": "Extended_Revolved_Side_Angle_Pose_or_Utthita_Parsvakonasana_",
+                "precisao": 82.37,
+                "sucesso": true
+            },
+            {
+                "nome": "Happy_Baby_Pose_or_Ananda_Balasana_",
+                "precisao": 88.55,
+                "sucesso": true
+            }
+        ]
+    },
+    {
+        "nivel": "Intermédio",
+        "data": "2025-05-22",
+        "resultado_nivel": "Passou",
+        "media_final": 88.92,
+        "poses": [
+            {
+                "nome": "Reclining_Hand-to-Big-Toe_Pose_or_Supta_Padangusthasana_",
+                "precisao": 94.45,
+                "sucesso": true
+            },
+            {
+                "nome": "Intense_Side_Stretch_Pose_or_Parsvottanasana_",
+                "precisao": 76.83,
+                "sucesso": true
+            },
+            {
+                "nome": "Happy_Baby_Pose_or_Ananda_Balasana_",
+                "precisao": 93.01,
+                "sucesso": true
+            },
+            {
+                "nome": "Bharadvaja's_Twist_pose_or_Bharadvajasana_I_",
+                "precisao": 94.24,
+                "sucesso": true
+            },
+            {
+                "nome": "Extended_Revolved_Side_Angle_Pose_or_Utthita_Parsvakonasana_",
+                "precisao": 80.23,
+                "sucesso": true
+            },
+            {
+                "nome": "Extended_Puppy_Pose_or_Uttana_Shishosana_",
+                "precisao": 86.46,
+                "sucesso": true
+            },
+            {
+                "nome": "Rajakapotasana",
+                "precisao": 99.54,
+                "sucesso": true
+            },
+            {
+                "nome": "Cobra_Pose_or_Bhujangasana_",
+                "precisao": 78.63,
+                "sucesso": true
+            },
+            {
+                "nome": "Camel_Pose_or_Ustrasana_",
+                "precisao": 95.08,
+                "sucesso": true
+            },
+            {
+                "nome": "Upward_Facing_Two-Foot_Staff_Pose_or_Dwi_Pada_Viparita_Dandasana_",
+                "precisao": 90.73,
+                "sucesso": true
+            }
+        ]
     }
 ]

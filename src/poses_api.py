@@ -105,6 +105,13 @@ def atualizar_progresso():
         }
 
     nivel_concluido = data.get("nivel")
+    mapa = {
+    "Intermédio": "Intermedio",
+    "Avançado": "Avancado",
+    "Mestre": "Mestre",
+    "Principiante": "Principiante"
+    }
+    nivel_concluido = mapa.get(nivel_concluido, nivel_concluido)
     if nivel_concluido and nivel_concluido not in progresso["concluidos"]:
         progresso["concluidos"].append(nivel_concluido)
 

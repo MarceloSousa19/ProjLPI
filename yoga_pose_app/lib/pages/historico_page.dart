@@ -46,15 +46,16 @@ class _HistoricoPageState extends State<HistoricoPage> {
             return const Center(child: Text('Nenhum histórico encontrado.'));
           }
 
-          final historico = snapshot.data!;
+          final historico = snapshot.data!.reversed.toList();
           return ListView.builder(
             itemCount: historico.length,
             itemBuilder: (context, index) {
               final item = historico[index];
+              final nivel = _normalizarNivel(item['nivel']);
               return Card(
                 margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: ListTile(
-                  title: Text("Nível: ${item['nivel']}"),
+                  title: Text("Nível: $nivel"),
                   subtitle: Text("Data: ${item['data']} • Resultado: ${item['resultado_nivel']}"),
                   trailing: Text("Média: ${item['media_final']}%"),
                   onTap: () {
@@ -69,30 +70,52 @@ class _HistoricoPageState extends State<HistoricoPage> {
     );
   }
 
+  String _normalizarNivel(String nivel) {
+    const mapa = {
+      "Principiante": "Principiante",
+      "Intermedio": "Intermédio",
+      "Avancado": "Avançado",
+      "Mestre": "Mestre"
+    };
+    return mapa[nivel] ?? nivel;
+  }
+
   void _mostrarDetalhes(BuildContext context, Map<String, dynamic> item) {
     final poses = List<Map<String, dynamic>>.from(item['poses']);
 
     showModalBottomSheet(
       context: context,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Detalhes da participação (${item['data']})",
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-            ...poses.map((p) => ListTile(
-              leading: Icon(
-                p['sucesso'] == true ? Icons.check_circle : Icons.cancel,
-                color: p['sucesso'] == true ? Colors.green : Colors.red,
+      isScrollControlled: true,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        builder: (context, scrollController) => Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Text(
+                "Detalhes da participação (${item['data']})",
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              title: Text(p['nome']),
-              trailing: Text("${p['precisao']}%"),
-            ))
-          ],
+              const SizedBox(height: 12),
+              Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: poses.length,
+                  itemBuilder: (context, index) {
+                    final p = poses[index];
+                    return ListTile(
+                      leading: Icon(
+                        p['sucesso'] == true ? Icons.check_circle : Icons.cancel,
+                        color: p['sucesso'] == true ? Colors.green : Colors.red,
+                      ),
+                      title: Text(p['nome']),
+                      trailing: Text("${p['precisao']}%"),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

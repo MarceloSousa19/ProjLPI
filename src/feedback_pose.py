@@ -1,8 +1,9 @@
 
 import json
 
-# Carregar ângulos ideais
-with open("ProjLPI/shared_data/angulos_ideais.json", "r") as f:
+import os
+path = os.path.join(os.path.dirname(__file__), "..", "shared_data", "angulos_ideais.json")
+with open(path, "r", encoding="utf-8") as f:
     angulos_ideais_data = json.load(f)
 
 def gerar_correcoes(pose_nome: str, angulos_utilizador: list[float], tolerancia: float = 0.1) -> list[str]:
