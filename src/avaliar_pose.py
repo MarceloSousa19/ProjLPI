@@ -1,30 +1,17 @@
-# src/avaliar_pose.py
 
 import json
 import os
 import sys
 from datetime import datetime
 
-# Se necessário garantir que src está no path
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.historico_individual import guardar_historico_individual
 from src.recorde_pessoal import atualizar_recorde_pessoal
 
 def avaliar_pose(angulos_referencia, angulos_utilizador, nome_pose=None):
-    """
-    Avalia a precisão de uma pose com base nos ângulos de referência e do utilizador.
-    Se nome_pose for fornecido, também guarda no histórico e atualiza recorde.
-
-    Args:
-        angulos_referencia (dict): Ângulos ideais da pose.
-        angulos_utilizador (dict): Ângulos capturados do utilizador.
-        nome_pose (str, optional): Nome da pose (para histórico e recorde).
-
-    Returns:
-        precisao (float): Precisão global da pose.
-        feedback (list of str): Lista de correções sugeridas.
-    """
+   
 
     tolerancia = 30  # tolerância permitida em graus
     total = len(angulos_referencia)
@@ -56,7 +43,7 @@ def avaliar_pose(angulos_referencia, angulos_utilizador, nome_pose=None):
     precisao = (corretos / total) * 100
     precisao = round(precisao, 2)
 
-    # 🆕 Guardar histórico e atualizar recorde se nome_pose for fornecido
+
     if nome_pose:
         print(f"📸 Avaliando pose: {nome_pose}")
         print(f"🎯 Precisão obtida: {precisao}%")

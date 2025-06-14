@@ -4,23 +4,22 @@ import mediapipe as mp
 import math
 import csv
 
-# Inicialização do MediaPipe Pose
+
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=True)
 LANDMARKS = mp_pose.PoseLandmark
 
-# Diretório base com subpastas por pose
+
 DATASET_PATH = 'images_test'
 CSV_OUTPUT = 'shared_data/features.csv'
 
-# Função para calcular ângulo entre 3 pontos
+
 def calcular_angulo(a, b, c):
     ang = math.degrees(
         math.atan2(c[1]-b[1], c[0]-b[0]) - math.atan2(a[1]-b[1], a[0]-b[0])
     )
     return abs(ang) if ang >= 0 else abs(360 + ang)
 
-# Define os ângulos a calcular (exemplo)
 ANGULOS = [
     (LANDMARKS.LEFT_SHOULDER, LANDMARKS.LEFT_ELBOW, LANDMARKS.LEFT_WRIST),
     (LANDMARKS.RIGHT_SHOULDER, LANDMARKS.RIGHT_ELBOW, LANDMARKS.RIGHT_WRIST),
@@ -30,10 +29,10 @@ ANGULOS = [
     (LANDMARKS.RIGHT_SHOULDER, LANDMARKS.RIGHT_HIP, LANDMARKS.RIGHT_KNEE),
 ]
 
-# Criação do CSV
+
 with open(CSV_OUTPUT, mode='w', newline='') as file:
     writer = csv.writer(file)
-    # Cabeçalho: nome, classe, ang1, ang2, ...
+
     writer.writerow(['imagem', 'classe'] + [f'ang_{i+1}' for i in range(len(ANGULOS))])
 
     # Iterar pelas pastas de poses

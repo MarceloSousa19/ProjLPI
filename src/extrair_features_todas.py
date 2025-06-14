@@ -1,4 +1,3 @@
-# src/extract_features.py
 
 import mediapipe as mp
 import cv2
@@ -41,7 +40,7 @@ def extrair_landmarks_angulo(imagem):
         landmarks = landmarks - np.mean(landmarks)
         landmarks = landmarks / (np.std(landmarks) + 1e-8)
 
-        # Extrair 8 ângulos articulares principais
+
         def ponto(i): return [lm[i].x, lm[i].y, lm[i].z]
 
         angulos = []

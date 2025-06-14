@@ -1,17 +1,7 @@
 
 
 def avaliar_nivel(precisoes_poses):
-    """
-    Avalia se o utilizador passou o nível com base nas precisões das poses.
-
-    Args:
-        precisoes_poses (list of float): Lista com as precisões individuais das 10 poses.
-
-    Returns:
-        media (float): Média final das precisões.
-        passou (bool): True se passou o nível, False caso contrário.
-        feedback (str): Mensagem de resultado.
-    """
+    
 
     # Verifica se a lista tem 10 entradas
     if len(precisoes_poses) != 10:

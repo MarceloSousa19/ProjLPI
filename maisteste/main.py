@@ -8,10 +8,10 @@ import time
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-# Tolerância para comparação dos ângulos
+
 tolerancia_angular = 15
 
-# Carregar poses armazqadas (JSON)
+
 if os.path.exists('poses.json'):
     with open('poses.json', 'r') as f:
         POSES_ARMAZENADAS = json.load(f)
@@ -125,7 +125,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             l_knee = [landmarks[25][0], landmarks[25][1]]
             l_ankle = [landmarks[27][0], landmarks[27][1]]
 
-            # Calcular ângulos
+
             angle = [
                 calculate_angle(r_shoulder, r_elbow, r_wrist),
                 calculate_angle(l_shoulder, l_elbow, l_wrist),

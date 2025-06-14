@@ -2,7 +2,6 @@ import json
 import os
 from collections import defaultdict
 
-# Caminho para o ficheiro JSON com recordes pessoais
 caminho_json = "shared_data/recordes_pessoais.json"
 
 try:
@@ -10,7 +9,7 @@ try:
         dados = json.load(f)
 
     # Contar poses acima de 90% por utilizador
-    contagem = defaultdict(set)  # nome -> set de poses com >90%
+    contagem = defaultdict(set)  
 
     for entry in dados:
         nome = entry.get("nome_utilizador")
@@ -22,7 +21,7 @@ try:
     resultados = []
     for nome, poses in contagem.items():
         pontuacao = len(poses)
-        medalha = pontuacao == 50  # assumindo 50 poses como total
+        medalha = pontuacao == 82  # Medalha de ouro se tiver 82 poses acima de 90%  
         resultados.append({"nome": nome, "pontuacao": pontuacao, "medalha": medalha})
 
     resultados.sort(key=lambda x: x["pontuacao"], reverse=True)

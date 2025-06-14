@@ -3,19 +3,7 @@ from datetime import datetime
 import os
 
 def gerar_historico_participacao(nivel, precisoes_poses, nomes_poses, passou, media_final):
-    """
-    Gera o dicionário do histórico de uma participação.
 
-    Args:
-        nivel (str): Nome do nível ("Principiante", "Intermédio", etc).
-        precisoes_poses (list of float): Lista com as precisões individuais.
-        nomes_poses (list of str): Lista com os nomes das poses.
-        passou (bool): True se passou o nível, False caso contrário.
-        media_final (float): Média final das 10 poses.
-
-    Returns:
-        dict: Histórico da participação.
-    """
 
     data_hoje = datetime.now().strftime("%Y-%m-%d")
 
@@ -38,13 +26,7 @@ def gerar_historico_participacao(nivel, precisoes_poses, nomes_poses, passou, me
     return historico
 
 def guardar_historico_json(historico, caminho_ficheiro=None):
-    """
-    Guarda um histórico de participação num ficheiro JSON.
 
-    Args:
-        historico (dict): Dicionário do histórico da participação.
-        caminho_ficheiro (str, optional): Caminho do ficheiro JSON. Default é 'shared_data/historico_participacoes.json'.
-    """
 
     if caminho_ficheiro is None:
         base_dir = os.path.dirname(os.path.abspath(__file__))

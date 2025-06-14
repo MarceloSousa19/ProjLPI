@@ -6,10 +6,10 @@ import joblib
 import tempfile
 import os
 
-# Inicializar Flask
+
 app = Flask(__name__)
 
-# Carregar modelo e encoder
+
 MODEL_PATH = "ProjLPI/shared_data/mlp_pose_classifier.joblib"
 ENCODER_PATH = "ProjLPI/shared_data/label_encoder.joblib"
 

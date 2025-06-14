@@ -1,26 +1,16 @@
-# src/recorde_pessoal.py
 
 import json
 import os
 
 def atualizar_recorde_pessoal(nome_pose, precisao, caminho_ficheiro="recordes_pessoais.json"):
-    """
-    Atualiza o recorde pessoal de uma pose, se a nova precisão for superior à anterior.
-
-    Args:
-        nome_pose (str): Nome da pose.
-        precisao (float): Nova precisão obtida.
-        caminho_ficheiro (str, optional): Nome do ficheiro JSON. Default é 'recordes_pessoais.json'.
-    """
-
-    # Carregar recordes existentes (se existirem)
+   
     if os.path.exists(caminho_ficheiro):
         with open(caminho_ficheiro, 'r', encoding='utf-8') as f:
             recordes = json.load(f)
     else:
         recordes = {}
 
-    # Verificar se já existe recorde para esta pose
+
     recorde_atual = recordes.get(nome_pose, 0)
 
     # Atualizar só se a nova precisão for superior

@@ -7,18 +7,12 @@ with open(path, "r", encoding="utf-8") as f:
     angulos_ideais_data = json.load(f)
 
 def gerar_correcoes(pose_nome: str, angulos_utilizador: list[float], tolerancia: float = 0.25) -> list[str]:
-    """
-    Compara os ângulos do utilizador com os ideais e gera sugestões de correção.
-    :param pose_nome: Nome da pose (deve existir no JSON)
-    :param angulos_utilizador: Lista de 8 ângulos normalizados [0, 1]
-    :param tolerancia: Diferença mínima para considerar correção
-    :return: Lista de mensagens de correção
-    """
+   
     correcoes = []
     angulos_ideais = angulos_ideais_data.get(pose_nome)
 
     if not angulos_ideais:
-        return ["⚠️ Pose não encontrada nos ângulos ideais."]
+        return [" Pose não encontrada nos ângulos ideais."]
 
     nomes_angulos = [
         "Braço direito (ombro-cotovelo-pulso)",

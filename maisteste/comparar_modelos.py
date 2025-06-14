@@ -9,7 +9,7 @@ import os
 BASE_DIR = 'ProjLPI'
 SHARED = os.path.join(BASE_DIR, 'shared_data')
 
-# Caminhos
+
 paths = {
     "angulos": {
         "train": os.path.join(SHARED, "features_train_angulos.csv"),

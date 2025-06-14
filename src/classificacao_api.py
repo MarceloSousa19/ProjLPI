@@ -5,16 +5,16 @@ import traceback
 from datetime import datetime
 from predict_pose import classificar_pose
 
-# Diretórios
+
 UPLOAD_FOLDER = 'uploads'
 IMAGE_FOLDER = 'images_test'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Inicializar Flask
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Endpoint principal de classificação
+
 @app.route('/classificar_pose', methods=['POST'])
 def classificar_pose_api():
     if 'imagem' not in request.files:
@@ -34,11 +34,11 @@ def classificar_pose_api():
         os.remove(filepath)  # só apaga se a classificação for bem-sucedida
         return jsonify(resultado)
     except Exception as e:
-        print("❌ ERRO ao classificar imagem:", e)
+        print(" Erro ao classificar imagem:", e)
         traceback.print_exc()
         return jsonify({'erro': str(e)}), 500
 
-# NOVO: Servir imagens das poses
+
 @app.route('/images/<pose>/<image>')
 def serve_pose_image(pose, image):
     folder = os.path.join(IMAGE_FOLDER, pose)

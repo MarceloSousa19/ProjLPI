@@ -12,7 +12,6 @@ DATASET_PATH = '/home/joaosousa/ProjLPI/ProjLPI/images_test'
 CSV_TRAIN = '/home/joaosousa/ProjLPI/ProjLPI/shared_data/features_train.csv'
 CSV_TEST = '/home/joaosousa/ProjLPI/ProjLPI/shared_data/features_test.csv'
 
-# Cabeçalho: imagem, classe, x0, y0, z0, v0, ..., x32, y32, z32, v32
 header = ['imagem', 'classe']
 for i in range(LANDMARK_COUNT):
     header += [f'x{i}', f'y{i}', f'z{i}', f'v{i}']

@@ -2,14 +2,13 @@ import json
 import os
 from collections import defaultdict
 
-# Caminho para o ficheiro JSON com recordes de grupos
+
 caminho_json = "shared_data/recordes_grupos.json"
 
 try:
     with open(caminho_json, "r", encoding="utf-8") as f:
         dados = json.load(f)
 
-    # Contar poses acima de 90% por grupo
     contagem = defaultdict(set)  # grupo -> set de poses com >90%
 
     for entry in dados:
@@ -22,7 +21,7 @@ try:
     resultados = []
     for grupo, poses in contagem.items():
         pontuacao = len(poses)
-        medalha = pontuacao == 50  # assumindo 50 poses totais possíveis
+        medalha = pontuacao ==  82  # Medalha de ouro se tiver 82 poses acima de 90%
         resultados.append({"grupo": grupo, "pontuacao": pontuacao, "medalha": medalha})
 
     resultados.sort(key=lambda x: x["pontuacao"], reverse=True)
@@ -31,7 +30,7 @@ try:
     with open(path_saida, "w", encoding="utf-8") as f_out:
         json.dump(resultados, f_out, ensure_ascii=False, indent=4)
 
-    print("✓ Classificação de grupos gerada com sucesso!")
+    print(" Classificação de grupos gerada com sucesso!")
     print("📁 Guardado em:", os.path.abspath(path_saida))
 
 except Exception as e:

@@ -7,7 +7,7 @@ from gerar_historico import gerar_historico_participacao, guardar_historico_json
 
 app = Flask(__name__)
 
-# Caminho correto: ../shared_data
+
 POSES_JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "shared_data", "poses_por_dificuldade.json"))
 
 @app.route("/poses_por_nivel", methods=["GET"])
@@ -24,7 +24,7 @@ def servir_imagem(subpath):
 
 @app.route("/imagem_pose/<pose>")
 def imagem_pose(pose):
-    # Caminho absoluto para: ../images_test/<pose>
+
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "images_test"))
     pasta_pose = os.path.join(base_dir, pose)
 
@@ -72,7 +72,7 @@ def classificacao_pessoal():
     caminho_ficheiro = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "shared_data", "historico_individual_poses.json"))
 
     if not os.path.exists(caminho_ficheiro):
-        return jsonify({})  # ou [] se preferires uma lista
+        return jsonify({})  
 
     with open(caminho_ficheiro, 'r', encoding='utf-8') as f:
         dados = json.load(f)
@@ -115,7 +115,7 @@ def atualizar_progresso():
     if nivel_concluido and nivel_concluido not in progresso["concluidos"]:
         progresso["concluidos"].append(nivel_concluido)
 
-    # desbloquear próximo nível se existir
+
     ordem = ["Principiante", "Intermedio", "Avancado", "Mestre"]
     idx_atual = ordem.index(nivel_concluido)
     if idx_atual + 1 < len(ordem):

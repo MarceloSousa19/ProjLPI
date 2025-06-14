@@ -6,18 +6,18 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import joblib
 import os
 
-# Caminhos
+
 BASE_DIR = 'ProjLPI'
 SHARED_DIR = os.path.join(BASE_DIR, 'shared_data')
 
 TRAIN_CSV = os.path.join(SHARED_DIR, 'features_train_normalized.csv')
 TEST_CSV = os.path.join(SHARED_DIR, 'features_test_normalized.csv')
 
-# Carregar datasets
+
 train_df = pd.read_csv(TRAIN_CSV)
 test_df = pd.read_csv(TEST_CSV)
 
-# Selecionar apenas colunas dos landmarks normalizados (x0, y0, z0, ..., x32, y32, z32)
+
 landmark_cols = [col for col in train_df.columns if col.startswith(('x', 'y', 'z'))]
 
 X_train = train_df[landmark_cols].values
@@ -26,12 +26,12 @@ y_train = train_df['classe'].values
 X_test = test_df[landmark_cols].values
 y_test = test_df['classe'].values
 
-# Codificar labels
+
 label_encoder = LabelEncoder()
 y_train_encoded = label_encoder.fit_transform(y_train)
 y_test_encoded = label_encoder.transform(y_test)
 
-# MLP
+
 mlp = MLPClassifier(
     hidden_layer_sizes=(256, 128, 64),
     activation='relu',
@@ -40,19 +40,19 @@ mlp = MLPClassifier(
     random_state=42
 )
 
-# Treinar
-print("🧠 Treinar MLP (landmarks normalizados)...")
+
+print("Trainning MLP model (landmarks)...")
 mlp.fit(X_train, y_train_encoded)
 
 # Avaliar
 y_pred = mlp.predict(X_test)
 accuracy = accuracy_score(y_test_encoded, y_pred)
-print(f"\n✅ Accuracy: {accuracy*100:.2f}%")
+print(f"\n Accuracy: {accuracy*100:.2f}%")
 
-print("\n📊 Classification Report:")
+print("\n Classification Report:")
 print(classification_report(y_test_encoded, y_pred, target_names=label_encoder.classes_))
 
-print("🧩 Confusion Matrix:")
+print(" Confusion Matrix:")
 print(confusion_matrix(y_test_encoded, y_pred))
 
 # Guardar modelo
