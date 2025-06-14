@@ -68,7 +68,10 @@ class _ClassificacoesPessoaisPageState extends State<ClassificacoesPessoaisPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Classificações Pessoais')),
+      appBar: AppBar(
+        title: const Text('Classificações Pessoais'),
+        backgroundColor: Colors.indigo.shade700,
+      ),
       body: carregando
           ? const Center(child: CircularProgressIndicator())
           : ListView(
@@ -81,10 +84,8 @@ class _ClassificacoesPessoaisPageState extends State<ClassificacoesPessoaisPage>
                   .map(calcularMediaNivel)
                   .toList();
               final mediaBase = medias.reduce((a, b) => a + b) / medias.length;
-              print('Média global dos níveis para desbloqueio do Mestre: $mediaBase');
               return mediaBase >= 90.0;
             } catch (e) {
-              print('Erro ao calcular média para desbloquear Mestre: $e');
               return false;
             }
           }
@@ -94,34 +95,46 @@ class _ClassificacoesPessoaisPageState extends State<ClassificacoesPessoaisPage>
           final nivel = entry.key;
           final poses = entry.value;
 
-          print('Carregando nível: $nivel com ${poses.length} poses');
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '🧘 Nível: $nivel',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                'Nível: $nivel',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const SizedBox(height: 8),
               ...poses.map((pose) {
                 final precisao = obterMelhorPrecisao(pose);
-                return ListTile(
-                  title: Text(pose.replaceAll('_', ' ')),
-                  trailing: Text(
-                    precisao != null
-                        ? '${precisao.toStringAsFixed(1)}%'
-                        : 'Por realizar',
-                    style: TextStyle(
-                      color: precisao != null ? Colors.green : Colors.grey,
+                return Card(
+                  elevation: 2,
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    title: Text(
+                      pose.replaceAll('_', ' '),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    trailing: Text(
+                      precisao != null
+                          ? '${precisao.toStringAsFixed(1)}%'
+                          : 'Por realizar',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: precisao != null ? Colors.green : Colors.grey,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 );
               }),
-              const Divider(),
+              const Divider(height: 32, thickness: 1.2),
             ],
           );
-        }).toList(),
+        })
+            .toList(),
       ),
     );
   }

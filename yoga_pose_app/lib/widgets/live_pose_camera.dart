@@ -6,6 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:image/image.dart' as img;
 import 'package:yoga_pose_app/config.dart';
 import '../resultado_pose.dart';
+import 'package:http_parser/http_parser.dart';
+import 'dart:io';
+import '../pages/resultado_pose_page.dart';
 
 class LivePoseDetectorCameraPage extends StatefulWidget {
   final String poseEsperada;
@@ -24,6 +27,7 @@ class LivePoseDetectorCameraPage extends StatefulWidget {
 class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage> {
   CameraController? _controller;
   bool _enviando = false;
+  DateTime? _ultimaCaptura;
   double _melhorConf = 0.0;
   String? imagemUrl;
 
@@ -42,7 +46,7 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
         final pasta = data['pasta'];
         final ficheiro = data['ficheiro'];
         setState(() {
-          imagemUrl = '${AppConfig.baseUrlBackend1}/images/$pasta/$ficheiro';
+          imagemUrl = '${AppConfig.baseUrlBackend1}/images_test/$pasta/$ficheiro';
         });
       }
     } catch (e) {
@@ -60,17 +64,26 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
     if (!mounted) return;
     setState(() {});
 
+    await Future.delayed(Duration(seconds: 5));
+
     _controller!.startImageStream((CameraImage image) async {
-      if (_enviando) return;
+      final agora = DateTime.now();
+
+      if (_enviando || (_ultimaCaptura != null && agora.difference(_ultimaCaptura!) < Duration(seconds: 2))) return;
 
       _enviando = true;
+      _ultimaCaptura = agora;
+
       final jpeg = await _converterYUVparaJPEG(image);
-      if (jpeg == null) {
-        _enviando = false;
-        return;
+      if (jpeg != null) {
+        final media = jpeg.reduce((a, b) => a + b) ~/ jpeg.length;
+        if (media > 15) {
+          await _enviarParaAPI(jpeg);
+        } else {
+          print("Ignorado: imagem escura ou vazia");
+        }
       }
 
-      await _enviarParaAPI(jpeg);
       _enviando = false;
     });
   }
@@ -79,52 +92,76 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
     try {
       final width = image.width;
       final height = image.height;
-      final imgRGB = img.Image(width: width, height: height);
-      final plane = image.planes[0];
+
+      final img.Image imgRGB = img.Image(width: width, height: height);
+      final uvRowStride = image.planes[1].bytesPerRow;
+      final uvPixelStride = image.planes[1].bytesPerPixel ?? 1;
 
       for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-          final pixelIndex = y * plane.bytesPerRow + x;
-          final value = plane.bytes[pixelIndex];
-          imgRGB.setPixelRgb(x, y, value, value, value);
+          final int uvIndex = uvPixelStride * (x ~/ 2) + uvRowStride * (y ~/ 2);
+          final int yValue = image.planes[0].bytes[y * image.planes[0].bytesPerRow + x];
+          final int uValue = image.planes[1].bytes[uvIndex];
+          final int vValue = image.planes[2].bytes[uvIndex];
+
+          int r = (yValue + 1.370705 * (vValue - 128)).round();
+          int g = (yValue - 0.337633 * (uValue - 128) - 0.698001 * (vValue - 128)).round();
+          int b = (yValue + 1.732446 * (uValue - 128)).round();
+
+          r = r.clamp(0, 255);
+          g = g.clamp(0, 255);
+          b = b.clamp(0, 255);
+
+          imgRGB.setPixelRgb(x, y, r, g, b);
         }
       }
 
-      return img.encodeJpg(imgRGB);
-    } catch (_) {
+      final rotated = img.copyRotate(imgRGB, angle: 90);
+      return img.encodeJpg(rotated);
+    } catch (e) {
+      print('Erro ao converter YUV para RGB: $e');
       return null;
     }
   }
 
   Future<void> _enviarParaAPI(List<int> jpeg) async {
     try {
+      final file = File('/storage/emulated/0/Download/frame_debug.jpg');
+      await file.writeAsBytes(jpeg);
+      print('🧪 Frame salvo localmente: ${file.path}');
+
       final uri = Uri.parse('${AppConfig.baseUrlBackend2}/classificar_pose');
       final req = http.MultipartRequest('POST', uri)
-        ..files.add(http.MultipartFile.fromBytes('imagem', jpeg, filename: 'frame.jpg'));
+        ..files.add(http.MultipartFile.fromBytes(
+          'imagem',
+          jpeg,
+          filename: 'frame.jpg',
+          contentType: MediaType('image', 'jpeg'),
+        ));
 
       final res = await req.send();
       final resBody = await res.stream.bytesToString();
 
       if (res.statusCode == 200) {
         final data = jsonDecode(resBody);
+
+        if (data.containsKey('erro')) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(data['erro']),
+                duration: Duration(seconds: 2),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+          return;
+        }
+
         final poseDetectada = data['pose'];
         final conf = data['precisao'].toDouble();
         final List<String> correcoes = List<String>.from(data['correcoes']);
-/*
-        if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
 
-        final imagemCapturada = Uint8List.fromList(jpeg);
-        widget.onResultado(ResultadoPose(
-          nomePose: widget.poseEsperada,
-          precisao: conf,
-          imagem: imagemCapturada,
-          correcoes: correcoes,
-        ));
-
-  _controller?.dispose();
-  Navigator.pop(context);
-}
-*/
         final imagemCapturada = Uint8List.fromList(jpeg);
         final resultado = ResultadoPose(
           nomePose: widget.poseEsperada,
@@ -133,20 +170,20 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
           correcoes: correcoes,
         );
 
-// Enviar sempre para o histórico
-        widget.onResultado(resultado);
+        _controller?.dispose();
 
-// Se passou, fecha e continua o fluxo
-        if (poseDetectada == widget.poseEsperada && conf >= 70.0) {
-          _controller?.dispose();
-          Navigator.pop(context);
-        }
-
-
-
-        setState(() {
-          if (conf > _melhorConf) _melhorConf = conf;
-        });
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ResultadoPosePage(
+              resultado: resultado,
+              onNext: () {
+                Navigator.pop(context);
+                widget.onResultado(resultado);
+              },
+            ),
+          ),
+        );
       }
     } catch (e) {
       print('Erro API: $e');
@@ -169,23 +206,13 @@ class _LivePoseDetectorCameraPageState extends State<LivePoseDetectorCameraPage>
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          if (imagemUrl != null)
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: Image.network(
-                imagemUrl!,
-                height: 200,
-                fit: BoxFit.contain,
+          Expanded(
+            child: Center(
+              child: AspectRatio(
+                aspectRatio: _controller!.value.aspectRatio,
+                child: CameraPreview(_controller!),
               ),
             ),
-          Expanded(
-            child: CameraPreview(_controller!),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Confiança para "${widget.poseEsperada.replaceAll('_', ' ')}": ${(_melhorConf * 100).toStringAsFixed(2)}%',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
         ],

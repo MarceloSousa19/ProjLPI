@@ -19,6 +19,7 @@ def extrair_landmarks_angulo(imagem):
     with mp_pose.Pose(static_image_mode=True) as pose:
         imagem_rgb = cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB)
         resultado = pose.process(imagem_rgb)
+        
 
         if not resultado.pose_landmarks:
             return None

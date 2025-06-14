@@ -61,34 +61,39 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
 
   Widget _buildBotaoNivel(String nome, bool ativo) {
     return ElevatedButton.icon(
-      icon: ativo ? const Icon(Icons.fitness_center) : const Icon(Icons.lock_outline),
-      onPressed: ativo ? () {
-        setState(() {
-          nivelAtual = nome;
-        });
-        _navegarParaNivel(nome);
-      } : null,
+      icon: ativo
+          ? const Icon(Icons.play_arrow, color: Colors.white)
+          : const Icon(Icons.lock_outline, color: Colors.white),
+      onPressed: ativo ? () => _navegarParaNivel(nome) : null,
       style: ElevatedButton.styleFrom(
-        backgroundColor: ativo ? Colors.blue : Colors.grey,
+        backgroundColor: ativo ? Colors.indigo.shade800 : Colors.grey.shade400,
         foregroundColor: Colors.white,
         minimumSize: const Size(double.infinity, 50),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 4,
       ),
-      label: Text(nome),
+      label: Text(
+        nome,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Avaliação de Nível')),
+      appBar: AppBar(
+        title: const Text('Avaliação de Nível'),
+        backgroundColor: Colors.indigo.shade700,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Escolha o seu nível de avaliação:',
-              style: TextStyle(fontSize: 20),
+              'Escolha o seu nível para iniciar a avaliação:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 24),
             _buildBotaoNivel('Principiante', desbloqueados.contains('Principiante')),

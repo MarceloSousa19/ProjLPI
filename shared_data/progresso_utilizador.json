@@ -1,7 +1,6 @@
 {
-    "nivel_maximo_desbloqueado": "Avancado",
+    "nivel_maximo_desbloqueado": "Intermedio",
     "concluidos": [
-        "Principiante",
-        "Intermedio"
+        "Principiante"
     ]
 }

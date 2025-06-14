@@ -50,6 +50,7 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Feedback Visual - Nível ${widget.nivel}'),
+        backgroundColor: Colors.indigo.shade700,
       ),
       body: Column(
         children: [
@@ -66,10 +67,10 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
                 final resultado = widget.resultados[index];
                 final sucesso = resultado.precisao >= 70;
 
-                return Padding(
-                  padding: const EdgeInsets.all(24.0),
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -80,45 +81,63 @@ class _SlideshowFeedbackPageState extends State<SlideshowFeedbackPage> {
                             size: 28,
                           ),
                           const SizedBox(width: 8),
-                          Text(
-                            resultado.nomePose.replaceAll('_', ' '),
-                            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
+                          Expanded(
+                            child: Text(
+                              resultado.nomePose.replaceAll('_', ' '),
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 16),
-                      Image.memory(resultado.imagem, height: 250),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.memory(
+                          resultado.imagem,
+                          height: 250,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                       const SizedBox(height: 16),
-                      Text('Precisão: ${resultado.precisao.toStringAsFixed(1)}%'),
+                      Text(
+                        'Precisão: ${resultado.precisao.toStringAsFixed(1)}%',
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
                       const SizedBox(height: 12),
                       if (resultado.correcoes.isNotEmpty) ...[
-                        const Text('Sugestões de Correção:', style: TextStyle(fontWeight: FontWeight.bold)),
+                        const Text(
+                          'Sugestões de Correção:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         const SizedBox(height: 8),
                         ...resultado.correcoes.map((c) => Text('- $c')),
                       ],
+                      const SizedBox(height: 40),
                     ],
                   ),
                 );
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              if (_paginaAtual > 0)
-                ElevatedButton(
-                  onPressed: _voltar,
-                  child: const Text('Anterior'),
-                ),
-              if (_paginaAtual < total - 1)
-                ElevatedButton(
-                  onPressed: _avancar,
-                  child: const Text('Seguinte'),
-                ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (_paginaAtual > 0)
+                  ElevatedButton(
+                    onPressed: _voltar,
+                    child: const Text('Anterior'),
+                  ),
+                if (_paginaAtual < total - 1)
+                  ElevatedButton(
+                    onPressed: _avancar,
+                    child: const Text('Seguinte'),
+                  ),
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
         ],
       ),
     );

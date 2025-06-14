@@ -6,7 +6,7 @@ path = os.path.join(os.path.dirname(__file__), "..", "shared_data", "angulos_ide
 with open(path, "r", encoding="utf-8") as f:
     angulos_ideais_data = json.load(f)
 
-def gerar_correcoes(pose_nome: str, angulos_utilizador: list[float], tolerancia: float = 0.1) -> list[str]:
+def gerar_correcoes(pose_nome: str, angulos_utilizador: list[float], tolerancia: float = 0.25) -> list[str]:
     """
     Compara os ângulos do utilizador com os ideais e gera sugestões de correção.
     :param pose_nome: Nome da pose (deve existir no JSON)
@@ -39,6 +39,6 @@ def gerar_correcoes(pose_nome: str, angulos_utilizador: list[float], tolerancia:
 
         if abs(diff) > tolerancia:
             direcao = "demasiado dobrado" if diff < 0 else "demasiado estendido"
-            correcoes.append(f"{nomes_angulos[i]} está {direcao} (Δ={round(diff, 2)})")
+            correcoes.append(f"{nomes_angulos[i]} está {direcao}")
 
     return correcoes

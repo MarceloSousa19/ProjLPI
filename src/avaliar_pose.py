@@ -26,7 +26,7 @@ def avaliar_pose(angulos_referencia, angulos_utilizador, nome_pose=None):
         feedback (list of str): Lista de correções sugeridas.
     """
 
-    tolerancia = 10  # tolerância permitida em graus
+    tolerancia = 30  # tolerância permitida em graus
     total = len(angulos_referencia)
     corretos = 0
     feedback = []

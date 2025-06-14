@@ -33,7 +33,7 @@ def guardar_historico_individual(nome_pose, precisao, caminho_ficheiro="../share
     # Adicionar nova tentativa
     historico_total[nome_pose]["tentativas"].append({
         "data": data_hoje,
-        "precisao": round(precisao, 2)
+        "precisao": round(precisao * 100, 2)
     })
 
     # Guardar atualizado

@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 import os
+import traceback
 from datetime import datetime
 from predict_pose import classificar_pose
 
@@ -30,11 +31,12 @@ def classificar_pose_api():
 
     try:
         resultado = classificar_pose(filepath)
+        os.remove(filepath)  # só apaga se a classificação for bem-sucedida
+        return jsonify(resultado)
     except Exception as e:
-        os.remove(filepath)
+        print("❌ ERRO ao classificar imagem:", e)
+        traceback.print_exc()
         return jsonify({'erro': str(e)}), 500
-
-    return jsonify(resultado)
 
 # NOVO: Servir imagens das poses
 @app.route('/images/<pose>/<image>')
@@ -45,4 +47,4 @@ def serve_pose_image(pose, image):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002, host="0.0.0.0")
+    app.run(debug=True, port=5002, host="192.168.1.64")

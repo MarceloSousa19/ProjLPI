@@ -126,6 +126,18 @@ def atualizar_progresso():
 
     return jsonify({"status": "ok", "progresso": progresso})
 
+@app.route('/historico_participacoes', methods=['GET'])
+def ler_historico_participacoes():
+    caminho = os.path.join(os.path.dirname(__file__), "..", "shared_data", "historico_participacoes.json")
+
+    if not os.path.exists(caminho):
+        return jsonify([])
+
+    with open(caminho, 'r', encoding='utf-8') as f:
+        historico = json.load(f)
+
+    return jsonify(historico)
+
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=True, host="192.168.1.64", port=5001)

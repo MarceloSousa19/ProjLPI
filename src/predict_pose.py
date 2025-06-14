@@ -18,7 +18,8 @@ import os
 path_modelo = os.path.join(os.path.dirname(__file__), "..", "shared_data", "mlp_pose_classifier.joblib")
 modelo = load(path_modelo)
 
-label_encoder = load("../shared_data/label_encoder.joblib")
+path_encoder = os.path.join(os.path.dirname(__file__), "..", "shared_data", "label_encoder.joblib")
+label_encoder = load(path_encoder)
 
 def calcular_angulo(a, b, c):
     ba = a - b
@@ -30,6 +31,7 @@ def calcular_angulo(a, b, c):
 
 def extrair_features(caminho_imagem):
     imagem = cv2.imread(caminho_imagem)
+    print(f"Imagem lida com sucesso: {imagem.shape}")
     if imagem is None:
         raise ValueError(f"Erro ao abrir a imagem: {caminho_imagem}")
 

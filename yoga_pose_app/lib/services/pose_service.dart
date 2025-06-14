@@ -44,7 +44,7 @@ class PoseService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'nome_pose': resultado.nomePose,
-          'precisao': resultado.precisao,
+          'precisao': double.parse((resultado.precisao * 100).toStringAsFixed(2)),
         }),
       );
     }

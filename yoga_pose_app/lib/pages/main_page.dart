@@ -4,6 +4,7 @@ import 'package:yoga_pose_app/pages/perfil_page.dart';
 import 'package:yoga_pose_app/pages/historico_page.dart';
 import 'package:yoga_pose_app/pages/classificacao_global_page.dart';
 
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -13,7 +14,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _indiceAtual = 0;
-  final List<Widget> _paginas = const [
+  final List<Widget> _paginas =  const [
     PerfilPage(),
     AvaliacaoPage(),
     HistoricoPage(),

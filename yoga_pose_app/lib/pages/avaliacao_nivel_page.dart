@@ -125,55 +125,73 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
     final poseAtual = poses[indexAtual];
 
     return Scaffold(
-      appBar: AppBar(title: Text('Avaliação ${widget.nivel}')),
+      appBar: AppBar(
+        title: Text('Avaliação ${widget.nivel}'),
+        backgroundColor: Colors.indigo.shade700,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               'Pose ${indexAtual + 1} de ${poses.length}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              poseAtual,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              poseAtual.replaceAll('_', ' '),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16),
             FutureBuilder<Map<String, dynamic>>(
               future: PoseService().obterImagemDaPose(poseAtual),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError || !snapshot.hasData) {
-                  return const Icon(Icons.image_not_supported);
+                  return const Icon(Icons.image_not_supported, size: 80);
                 } else {
                   final data = snapshot.data!;
                   final pasta = data['pasta'];
                   final ficheiro = data['ficheiro'];
                   final imagemUrl = '${AppConfig.baseUrlBackend1}/images_test/$pasta/$ficheiro';
 
-                  return Image.network(
-                    imagemUrl,
-                    height: 250,
-                    errorBuilder: (context, error, stackTrace) => const Icon(Icons.image_not_supported),
+                  return Container(
+                    constraints: const BoxConstraints(maxHeight: 300),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.grey.shade200,
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: Image.network(
+                      imagemUrl,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) => const Icon(Icons.image_not_supported, size: 80),
+                    ),
                   );
                 }
               },
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 10),
             if (!iniciou)
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    iniciou = true;
-                  });
-                },
-                child: const Text('Iniciar Avaliação'),
-              )
-            else
+              Center(
+                child: ElevatedButton(
+                  onPressed: () => setState(() => iniciou = true),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.indigo.shade100,
+                    foregroundColor: Colors.indigo.shade900,
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  ),
+                  child: const Text('Iniciar Avaliação'),
+                ),
+              ),
+            if (iniciou) const SizedBox(height: 12),
+            if (iniciou)
               Expanded(
                 child: LivePoseDetectorPage(
                   poseEsperada: poseAtual,
