@@ -1,169 +1,18 @@
 {
-    "Child_Pose_or_Balasana_": {
-        "nome": "Child_Pose_or_Balasana_",
+    "Tree_Pose_or_Vrksasana_": {
+        "nome": "Tree_Pose_or_Vrksasana_",
         "tentativas": [
             {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 99.9
-            }
-        ]
-    },
-    "Virasana_or_Vajrasana": {
-        "nome": "Virasana_or_Vajrasana",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            }
-        ]
-    },
-    "Supta_Virasana_Vajrasana": {
-        "nome": "Supta_Virasana_Vajrasana",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.55
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 0.81
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 0.8
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 79.8
-            }
-        ]
-    },
-    "Legs-Up-the-Wall_Pose_or_Viparita_Karani_": {
-        "nome": "Legs-Up-the-Wall_Pose_or_Viparita_Karani_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.97
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 0.97
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 97.0
+                "data": "2025-06-11",
+                "precisao": 99.54
             },
             {
                 "data": "2025-06-11",
-                "precisao": 1.0
-            }
-        ]
-    },
-    "Fish_Pose_or_Matsyasana_": {
-        "nome": "Fish_Pose_or_Matsyasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.86
+                "precisao": 98.12
             },
             {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 99.6
-            }
-        ]
-    },
-    "Bound_Angle_Pose_or_Baddha_Konasana_": {
-        "nome": "Bound_Angle_Pose_or_Baddha_Konasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            }
-        ]
-    },
-    "Bridge_Pose_or_Setu_Bandha_Sarvangasana_": {
-        "nome": "Bridge_Pose_or_Setu_Bandha_Sarvangasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 99.8
-            }
-        ]
-    },
-    "Staff_Pose_or_Dandasana_": {
-        "nome": "Staff_Pose_or_Dandasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 99.6
-            }
-        ]
-    },
-    "Cobra_Pose_or_Bhujangasana_": {
-        "nome": "Cobra_Pose_or_Bhujangasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.7
-            }
-        ]
-    },
-    "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_": {
-        "nome": "Downward-Facing_Dog_pose_or_Adho_Mukha_Svanasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 1.0
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 100.0
-            }
-        ]
-    },
-    "Sitting_pose_1_(normal)": {
-        "nome": "Sitting_pose_1_(normal)",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.97
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 96.6
-            }
-        ]
-    },
-    "Gate_Pose_or_Parighasana_": {
-        "nome": "Gate_Pose_or_Parighasana_",
-        "tentativas": [
-            {
-                "data": "2025-06-09",
-                "precisao": 0.99
-            },
-            {
-                "data": "2025-06-09",
-                "precisao": 99.1
+                "data": "2025-06-11",
+                "precisao": 981000.0
             }
         ]
     },
@@ -171,8 +20,121 @@
         "nome": "Chair_Pose_or_Utkatasana_",
         "tentativas": [
             {
-                "data": "2025-06-09",
-                "precisao": 70.5
+                "data": "2025-06-11",
+                "precisao": 100.0
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 1000000.0
+            }
+        ]
+    },
+    "Fish_Pose_or_Matsyasana_": {
+        "nome": "Fish_Pose_or_Matsyasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 88.51
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 885000.0
+            }
+        ]
+    },
+    "Gate_Pose_or_Parighasana_": {
+        "nome": "Gate_Pose_or_Parighasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 46.37
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 464000.0
+            }
+        ]
+    },
+    "Bound_Angle_Pose_or_Baddha_Konasana_": {
+        "nome": "Bound_Angle_Pose_or_Baddha_Konasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 86.09
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 861000.0
+            }
+        ]
+    },
+    "Staff_Pose_or_Dandasana_": {
+        "nome": "Staff_Pose_or_Dandasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 99.26
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 993000.0
+            }
+        ]
+    },
+    "Child_Pose_or_Balasana_": {
+        "nome": "Child_Pose_or_Balasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 99.24
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 992000.0
+            }
+        ]
+    },
+    "Wind_Relieving_pose_or_Pawanmuktasana": {
+        "nome": "Wind_Relieving_pose_or_Pawanmuktasana",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 99.95
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 999000.0
+            }
+        ]
+    },
+    "Virasana_or_Vajrasana": {
+        "nome": "Virasana_or_Vajrasana",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 94.12
+            },
+            {
+                "data": "2025-06-11",
+                "precisao": 941000.0
+            }
+        ]
+    },
+    "Supta_Baddha_Konasana_": {
+        "nome": "Supta_Baddha_Konasana_",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 46.64
+            }
+        ]
+    },
+    "Supta_Virasana_Vajrasana": {
+        "nome": "Supta_Virasana_Vajrasana",
+        "tentativas": [
+            {
+                "data": "2025-06-11",
+                "precisao": 466000.0
             }
         ]
     }
