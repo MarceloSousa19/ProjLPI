@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yoga_pose_app/config.dart';
 import 'classificacoes_pessoais_page.dart';
 
@@ -18,12 +19,15 @@ class _PerfilPageState extends State<PerfilPage> {
   File? imagemPerfil;
   String nivelAtual = 'Principiante';
   List<String> concluidos = [];
+  String nomeUtilizador = 'Nome não definido';
+  final TextEditingController _nomeController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     carregarImagemPerfil();
     carregarProgresso();
+    carregarNomeUtilizador();
   }
 
   Future<File> _obterFicheiroPerfil() async {
@@ -75,8 +79,27 @@ class _PerfilPageState extends State<PerfilPage> {
         });
       }
     } catch (e) {
-      debugPrint('Erro ao carregar progresso: $e');
+      debugPrint('Erro ao carregar o progresso: $e');
     }
+  }
+
+  Future<void> carregarNomeUtilizador() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      nomeUtilizador = prefs.getString('nome_utilizador') ?? 'Nome não definido';
+      _nomeController.text = nomeUtilizador;
+    });
+  }
+
+  Future<void> guardarNomeUtilizador() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nome_utilizador', _nomeController.text);
+    setState(() {
+      nomeUtilizador = _nomeController.text;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Nome atualizado com sucesso')),
+    );
   }
 
   @override
@@ -100,9 +123,18 @@ class _PerfilPageState extends State<PerfilPage> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Nome: João Sousa',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            TextField(
+              controller: _nomeController,
+              decoration: const InputDecoration(
+                labelText: 'Nome de Utilizador',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.save),
+              label: const Text('Guardar Nome'),
+              onPressed: guardarNomeUtilizador,
             ),
             const SizedBox(height: 8),
             Text(

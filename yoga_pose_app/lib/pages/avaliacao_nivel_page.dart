@@ -50,7 +50,7 @@ class _AvaliacaoNivelPageState extends State<AvaliacaoNivelPage> {
         poses = todas.take(limite).toList();
       });
     } catch (e) {
-      print('Erro ao carregar poses: $e');
+      print('Erro ao carregar as poses: $e');
     }
   }
 

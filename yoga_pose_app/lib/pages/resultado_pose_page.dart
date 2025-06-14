@@ -40,7 +40,7 @@ class ResultadoPosePage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                'Confiança: ${resultado.precisao.toStringAsFixed(1)}%',
+                'Avaliação: ${resultado.precisao.toStringAsFixed(1)}%',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

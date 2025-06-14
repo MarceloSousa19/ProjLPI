@@ -40,7 +40,7 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
         });
       }
     } catch (e) {
-      print('Erro ao carregar progresso: $e');
+      print('Erro ao carregar o progresso: $e');
     }
   }
 
@@ -92,7 +92,7 @@ class _AvaliacaoPageState extends State<AvaliacaoPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Escolha o seu nível para iniciar a avaliação:',
+              'Escolhe o teu nível para iniciar a avaliação:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 24),

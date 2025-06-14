@@ -11,7 +11,6 @@ class PoseService {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
-      // Corrigir para usar a chave com a primeira letra maiúscula
       final chaveNivel = nivel[0].toUpperCase() + nivel.substring(1).toLowerCase();
 
       if (data is Map<String, dynamic> && data.containsKey(chaveNivel)) {
@@ -23,7 +22,7 @@ class PoseService {
 
       throw Exception('Nível "$chaveNivel" não encontrado na resposta.');
     } else {
-      throw Exception('Erro ao carregar poses do backend');
+      throw Exception('Erro ao carregar as poses do backend');
     }
   }
   Future<Map<String, dynamic>> obterImagemDaPose(String nomePose) async {
@@ -33,7 +32,7 @@ class PoseService {
     if (res.statusCode == 200) {
       return jsonDecode(res.body);
     } else {
-      throw Exception('Falha ao obter imagem da pose');
+      throw Exception('Falha ao obter a imagem da pose');
     }
   }
 
